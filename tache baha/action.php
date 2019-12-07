@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include"../config.php";	
 		
 
 	if (isset($_POST['action'])) {
@@ -11,13 +12,14 @@ session_start();
         require "../entities/cart.php";
         require "../core/cartC.php";
 
-        require "../entities/workshop.php";
-        require "../core/workshopC.php";
+        require "../entities/produit.php";
+        require "../core/produitC.php";
 
 		if (isset($_POST['wId'])) {
-			$objWorkshop = new workshopC($conn);
-			$objWorkshop->setId($_POST['wId']);
-			$workshop = $objWorkshop->getWorkshopById();
+			$objproduit = new produitC($conn);
+			$objproduit->setId($_POST['wId']);
+			$produit = $objproduit->getproduitById();
+
 		}
     	
     	$objCart = new cartC($conn);
@@ -25,12 +27,22 @@ session_start();
 		switch ($_POST['action']) {
 			case 'add':
       			
-               $objCart->setCid($_SESSION['cid']);
-			 	$objCart->setPid($workshop['id']);
-			 	$objCart->setTitle($workshop['title']);
+               $objCart->setCid($_SESSION['id']);
+			 	$objCart->setPid($produit['id']);
+			 	$objCart->setTitle($produit['nom']);
 			 	$objCart->setQuantity(1);
-			 	$objCart->setTotalAmount($workshop['price']);
-			 	$objCart->setCreatedOn(date('Y-m-d H:i:s'));
+			 	$promid=$produit['id'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = -1;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
+if($prix!=-1){         $objCart->setTotalAmount($produit['prix']-($produit['prix']*($prix/100)));}
+else{			$objCart->setTotalAmount($produit['prix']); }
 
 			 	if($objCart->addItem()) {
 			 		echo json_encode( ["status" => 1, "msg" => "Added to cart."] );
@@ -43,10 +55,24 @@ session_start();
 				break;
 
             case 'update':
-		    	$objCart->setCid($_SESSION['cid']);
-			 	$objCart->setPid($workshop['id']);
+		    	$objCart->setCid($_SESSION['id']);
+			 	$objCart->setPid($produit['id']);
 			 	$objCart->setQuantity($_POST['quantity']);
-			 	$objCart->setTotalAmount($workshop['price']*$_POST['quantity']);
+			 	$promid=$produit['id'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = -1;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
+if($prix!=-1){        $objCart->setTotalAmount(($produit['prix']-($produit['prix']*($prix/100)))*$_POST['quantity']);
+ }
+else{			$objCart->setTotalAmount($produit['prix']*$_POST['quantity']); }
+
+			 	
 
 			 	if($objCart->updateItem()) {
 			 		$data = $objCart->calculatePrices();
@@ -61,7 +87,7 @@ session_start();
 				break;
 
 			case 'remove':
-		    	$objCart->setCid($_SESSION['cid']);
+		    	$objCart->setCid($_SESSION['id']);
 			 	$objCart->setId($_POST['cartId']);
 
 			 	if($objCart->removeItem()) {
@@ -77,7 +103,7 @@ session_start();
 				break;
 
 			case 'clear':
-		    	$objCart->setCid($_SESSION['cid']);
+		    	$objCart->setCid($_SESSION['id']);
 			 	
 			 	if($objCart->removeAllItems()) {
 
