@@ -1,13 +1,11 @@
-
-
 <?php
 session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<title>High-Tech-Info<</title>
+<link rel="icon" href="images/icone.ico">
+<title>High-Tech-Info</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,6 +57,7 @@ session_start();
     }
 </style>
 <body>
+		<script type="text/javascript" src="controle.js"></script>
 	<!-- for bootstrap working -->
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 	<!-- //for bootstrap working -->
@@ -84,11 +83,11 @@ session_start();
 									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 										<div class="facts">
 											<div class="register">
-												<form action="#" method="post">			
-													<input name="Email" placeholder="Email Address" type="text" required="">						
-													<input name="Password" placeholder="Password" type="password" required="">										
+												<form action="clientlog.php" method="post">
+													<input name="username" id="username" placeholder="username" type="text" >
+													<input name="password" id="password" placeholder="password" type="password">
 													<div class="sign-up">
-														<input type="submit" value="Sign in"/>
+														<input type="submit" value="Sign in" onclick="return verif1()" />
 													</div>
 												</form>
 											</div>
@@ -97,13 +96,17 @@ session_start();
 									<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
 										<div class="facts">
 											<div class="register">
-												<form action="#" method="post">			
-													<input placeholder="Name" name="Name" type="text" required="">
-													<input placeholder="Email Address" name="Email" type="email" required="">	
-													<input placeholder="Password" name="Password" type="password" required="">	
-													<input placeholder="Confirm Password" name="Password" type="password" required="">
+												<form name="myForm" id="myForm" action="ajoutclient.php" method="post">
+													<input placeholder="Nom" name="nom" id="nom" type="text" >
+													<input placeholder="Prenom" name="prenom" id="prenom" type="text" >
+													<input placeholder="Username" name="username" id="username" type="text" >
+													<input placeholder="adresse" name="adresse" id="adresse" type="text" ">
+													<input placeholder="telephone" name="tel" id="tel" type="text" >
+													<input placeholder="Email Address" name="email" id="email" type="text" >
+													<input placeholder="Password" name="password" id="password" type="password" >
+													<input placeholder="Confirm Password" name="password" id="password1" type="password" >
 													<div class="sign-up">
-														<input type="submit" value="Create Account"/>
+														<input type="submit" onclick="return verif()" value="Create Account"/>
 													</div>
 												</form>
 											</div>
@@ -143,19 +146,35 @@ session_start();
 			</div>
 		</div>
 	</div>
-	<script>
-		$('#myModal88').modal('show');
-	</script>  
+  <?php if(!isset($_SESSION['id'])){ ?>
+  <script>
+    $('#myModal88').modal('show');
+  </script>
+  <?php } ?>
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
 		<div class="container">
+
 			<div class="w3l_login">
-				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    <?php if(!isset($_SESSION['id'])){ ?>
+        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+
+
+        <?php } else{
+if ($_SESSION['role']=='admin') {
+
+    ?>
+    <a href="../back-end/index.php"><span class="glyphicon glyphicon-stats" ></span></a>
+<?php } ?>
+    <a href="clientlog.php?action=out"><span class="glyphicon glyphicon-log-in" ></span></a>
+
+  <?php
+  }
+  ?>
 			</div>
 			<div class="w3l_logo">
-				<h1><a href="index.php">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
-			</div>
+<h1><a href="index.php"><center><img src="images/hightech.png"></center><span>Your stores. Your place.</span></a></h1>			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
 				<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
@@ -173,23 +192,27 @@ require_once('../db/DbConnect.php');
 
             require '../entities/customer.php';
             require '../core/customerC.php';
-	    	$objCustomer = new customerC($conn);
-	    	$objCustomer->setEmail('durgesh@gmail.com');
-	    	$customer = $objCustomer->getCustomerByEmailId();
+	    	/*$objCustomer = new customerC($conn);
+	    	$objCustomer->setEmail($_SESSION['email']);
+	    	//$objCustomer->getCustomerById(1);
+	    	$customer = $objCustomer->getCustomerByEmailId();*/
 //session_start();
 
-	    	$_SESSION['cid'] = $customer['id'];
-
+	    	//$_SESSION['cid'] = $customer['id'];
+	    	//$_SESSION['cid'] = $_SESSION['id'];
+if(isset($_SESSION['id'])){          
+            echo ('session de client id ='.$_SESSION['id']);
             require '../entities/cart.php';
             require '../core/cartC.php';
             $objCart = new cartC($conn);
-			$objCart->setCid($customer['id']);
+			$objCart->setCid($_SESSION['id']);
 			$cartItems = $objCart->getAllCartItems();
+		}
   ?>			
 			<div class="cart cart box_1"> 
 					
 					<button class="w3view-cart" type="submit" name="submit" value="">
-<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php echo count($cartItems);?></sup></a>
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php if(isset($_SESSION['id'])){ echo count($cartItems); } ?></sup></a>
 						 </button>
 						
 				
@@ -216,13 +239,13 @@ require_once('../db/DbConnect.php');
 						<li><a href="index.html" class="act">Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
-							<ul class="dropdown-menu multi-column columns-3">
+							<a href="produit.php"  >Products <b ></b></a>
+<?php  ?>							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="col-sm-3">
 										<ul class="multi-column-dropdown">
 											<h6>Mobiles</h6>
-											<li><a href="products.html">Mobile Phones</a></li>
+											<li><a href="produit.php">Mobile Phones</a></li>
 											<li><a href="products.html">Mp3 Players <span>New</span></a></li> 
 											<li><a href="products.html">Popular Models</a></li>
 											<li><a href="products.html">All Tablets<span>New</span></a></li>
@@ -249,7 +272,7 @@ require_once('../db/DbConnect.php');
 									<div class="col-sm-4">
 										<div class="w3ls_products_pos">
 											<h4>30%<i>Off/-</i></h4>
-											<img src="images/1.jpg" alt=" " class="img-responsive" />
+											<img src="images/4.jpg" alt=" " class="img-responsive" />
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -264,6 +287,10 @@ require_once('../db/DbConnect.php');
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+<?php if(isset($_SESSION['id'])){?>						
+						<li><a href="profile.php">Profile</a></li>						
+					    <li><a href="historique.php">historique achats</a></li>
+<?php } ?>
 					</ul>
 				</div>
 			</nav>
@@ -1334,23 +1361,39 @@ require_once('../db/DbConnect.php');
 <?php
 
 
+include"../config.php";	
 
-require "../entities/workshop.php";
-require "../core/workshopC.php";
-		    	$objWorkshop = new workshopC($conn);
-		    	$produits = $objWorkshop->getAllWorkshops();
+require "../entities/produit.php";
+require "../core/produitC.php";
+		    	$objproduit = new produitC($conn);
+		    	$produits = $objproduit->getAllproduits();
 
+/////////////////////////
+
+///////////////////
 foreach ($produits as $key => $produit) {
+?>
+<?php  
 
+$promid=$produit['id'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = -1;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
 ?>				
 				<div class="col-md-3 agileinfo_new_products_grid">
 					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
 						<div class="hs-wrapper hs-wrapper1">
-							<img src="images/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="images/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="images/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="images/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="images/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
 							<div class="w3_hs_bottom w3_hs_bottom_sub">
 								<ul>
 									<li>
@@ -1360,11 +1403,16 @@ foreach ($produits as $key => $produit) {
 							</div>
 						</div>
 
-						<h5><a href="single.html"><?php echo $produit['title'];  ?> </a></h5>
-						<p><?= substr($produit['description'], 0, 60) . '...'; ?></p>					
+						<h5><a href="single.html"><?php echo $produit['nom'];  ?> </a></h5>
+											
 						<div class="simpleCart_shelfItem">
- <p><span>1236 TND</span> <i class="item_price"> <?php echo number_format($produit['price'],2)  ?> TND</i></p>
-                        <?php 
+<?php if($prix!=-1)  {?> 
+ <p><span><?php echo number_format($produit['prix'],2)  ?> TND</span> <i class="item_price">
+ 	<?php echo number_format($produit['prix']-($produit['prix']*($prix/100)),2);  ?>  TND</i></p>
+ <?php } else { ?>
+ <p><i class="item_price"> <?php echo number_format($produit['prix'],2)  ?> TND</i></p>
+<?php } ?> 	
+                        <?php  if(isset($_SESSION['id'])){
 		        				$disButton = "";
 		        				if( array_search($produit['id'], array_column($cartItems, 'pid')) !==false ) {
 		        					$disButton = "disabled";
@@ -1372,6 +1420,18 @@ foreach ($produits as $key => $produit) {
 		        			 ?>
 <button id="cartBtn_<?=$produit['id'];?>"  <?php echo $disButton; ?>  role="button" class="w3ls-cart" 
 	onclick="addToCart(<?php echo $produit['id']; ?>,this.id)" >Add to cart</button>
+<?php } ?>
+<?php if(!isset($_SESSION['id'])){ ?>
+<button   role="button" class="w3ls-cart" 
+	onclick=myfunction();>Add to cart</button>
+<script>
+function myfunction() {
+  alert("you must log in to put in cart ");
+  $('#myModal88').modal('show');
+
+}
+</script>	
+<?php } ?>	
 
 						</div>
 					
@@ -1550,5 +1610,7 @@ foreach ($produits as $key => $produit) {
 			
 		})
 	}
+
 </script>
+
 </html>
