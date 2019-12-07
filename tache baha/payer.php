@@ -258,18 +258,19 @@ session_start();
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+						<li><a href="historique.php">historique achats</a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
 	</div>
 	<!-- //navigation -->
-*********************************************
 
+***************************************************
 <?php 
 
 //session_start();
-
+echo ('session de client id ='.$_SESSION['id']);
 require_once('../db/DbConnect.php');
             $db   = new DbConnect();
             $conn = $db->connect();
@@ -277,13 +278,13 @@ require_once('../db/DbConnect.php');
             require '../entities/cart.php';
             require '../core/cartC.php';
             $objCart = new cartC($conn);
-			$objCart->setCid($_SESSION['cid']);
+			$objCart->setCid($_SESSION['id']);
  $cartItems = $objCart->getAllCartItems();
     $cartPrices = $objCart->calculatePrices($cartItems);
            require '../entities/transaction.php';
             require '../core/transactionC.php';
 $objtrans= new transactionC($conn);
-$objtrans->setCid($_SESSION['cid']);
+$objtrans->setCid($_SESSION['id']);
 $objtrans->setQuantity($cartPrices['itemCount']);
 $objtrans->setAmount(str_replace(',', '', $cartPrices['finalPrice']));
 $objtrans->setOrderStatus(0);
@@ -293,29 +294,155 @@ $tId=$objtrans->saveTransaction();
 if(!is_numeric($tId)){
 echo"problem occured tId please try again";	
 }
-            require '../entities/workshopseat.php';
-            require '../core/workshopseatC.php';
-$objWseat= new workshopSeatC($conn);
+            require '../entities/produit_trans.php';
+            require '../core/produit_transC.php';
+$produit_trans= new produit_transC($conn);
 foreach ($cartItems as $key => $cartItem) {
-	$objWseat->setTid($tId);
-	$objWseat->setWid($cartItem['pid']);
-	$objWseat->setQuantity($cartItem['quantity']);
-	$objWseat->setCreatedOn(date('Y-m-d H:i:s'));
-    $orderId=$objWseat->bookSeats();
+	$produit_trans->setTid($tId);
+	$produit_trans->setWid($cartItem['pid']);
+	$produit_trans->setQuantity($cartItem['quantity']);
+	$produit_trans->setCreatedOn(date('Y-m-d H:i:s'));
+    $orderId=$produit_trans->bookSeats();
 if(!is_numeric($orderId)){
 echo"problem occured  orderId please try again";	
 }    
 }
+
 //$data= ' thanks for ordering &transaction id='.$tId.'&order_id='.$orderId.'&amount='.$objtrans->getAmount();
+///////////////////////////////////////////////////////////////////////////////////////////////////
+		if(isset($_POST['sendmail'])) {
+			require '../send/PHPMailerAutoload.php';
+			require '../send/credential.php';
+
+			$mail = new PHPMailer;
+
+		   //$mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 // SMTP username
+			$mail->Password = PASS;                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom(EMAIL,'HignTechInfo');
+			$mail->addAddress($_SESSION['email']);     // Add a recipient
+
+			$mail->addReplyTo(EMAIL);
+			// print_r($_FILES['file']); exit;
+			/*for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
+				$mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
+			}*/
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = 'commande ordre id '.$_SESSION['id'];
+			//$mail->Body    = '<div style="border:2px solid blue;"> thanks for ordering &transaction id='.$tId.'</br> &quantite'.$objtrans->getQuantity().'<b></br> amount</b>'.$objtrans->getAmount().'</div>';
+
+			$mail->Body ='	<div class="container">
+	<table class="table table-striped">
+		 	<caption><strong>products purchased</strong></caption>
+		 	<thead>
+		 		<tr>
+		 			<th>#id</th>
+		 			<th>Customer</th>
+		 			<th>Quantity</th>
+		 			<th>Amount</th>
+		 			<th>Status</th>
+		 			<th> purchase DATE</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		
+		 		
+		 		<tr>
+		 			<td>'.$tId.'</td>
+		 			<td>'.$_SESSION['nom'].'</td>
+		 			<td>'.$objtrans->getQuantity().'</td>
+		 			<td>'.$objtrans->getAmount().'</td>
+		 			<td>'.$objtrans->getOrderStatus().'</td>
+		 			<td>'.$objtrans->getCreatedOn().'</td>
+		 		</tr>
+		 	</tbody>
+		</table></div>' ;
+
+
+			$mail->AltBody = ' thanks for ordering &transaction id='.$tId.'&quantite'.$objtrans->getQuantity().'&amount='.$objtrans->getAmount();
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo ' </br> commande confirmation Message has been sent </br>';
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*require_once(__DIR__ . '/php-rest-api-master/autoload.php');
+
+$MessageBird = new \MessageBird\Client('FeogdOMWYKL6av0QWMiFftgn8'); // Set your own API access key here.
+
+$Message             = new \MessageBird\Objects\Message();
+$Message->originator = 'High-T-Info';
+//echo $_SESSION['tel'];
+$num='+'.strval( $_SESSION['tel'] );
+//echo '/'.$num;
+
+$Message->recipients = array($num);
+$Message->body       = ' merci notre  client '.$_SESSION['nom'].' de passer une commande dont id commande ='.$tId.'/ amount = '.$objtrans->getAmount().'/ quantite total produits ='.$objtrans->getQuantity();
+
+try {
+    $MessageResult = $MessageBird->messages->create($Message);
+    //var_dump($MessageResult);
+    echo ' </br> commande confirmation Message  to mobile '.$num.'has been sent </br>';
+
+} catch (\MessageBird\Exceptions\AuthenticateException $e) {
+    // That means that your accessKey is unknown
+    echo 'wrong login';
+
+} catch (\MessageBird\Exceptions\BalanceException $e) {
+    // That means that you are out of credits, so do something about it.
+    echo 'no balance';
+
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//$data= ' thanks for ordering &transaction id='.$tId.'&quantite'.$objtrans->getQuantity().'&amount='.$objtrans->getAmount();
 //echo $data;
 $objCart->removeAllItems();
-
-
   
              $objTrans1 = new transactionC($conn);
-	$transactions = $objTrans1->getTransactions();
-
+	$transactions = $objTrans1->getAlltransactions();
  ?>
+ ********************************************
+
 <div class="container">
 		<table class="table table-striped">
 		 	<caption><strong>products purchased</strong></caption>
@@ -332,16 +459,18 @@ $objCart->removeAllItems();
 		 	<tbody>
 		 		<?php 
 		 			foreach ($transactions as $key => $transaction) {
+		 		if($transaction['cid']==$_SESSION['id'])
+		        {
 		 		?>
 		 		<tr>
 		 			<td><a href="reportDetails.php?tid=<?= $transaction['id']; ?>"><?= $transaction['id']; ?></a></td>
-		 			<td><?= $transaction['name']; ?></td>
+		 			<td><?= $_SESSION['nom']; ?></td>
 		 			<td><?= $transaction['quantity']; ?></td>
 		 			<td><?= $transaction['amount']; ?></td>
 		 			<td><?= $objTrans1->getOrderStatusById($transaction['orderStatus']); ?></td>
 		 			<td><?= $transaction['createdOn']; ?></td>
 		 		</tr>
-		 	<?php } ?>
+		 	<?php  } } ?>
 		 	</tbody>
 		</table>
 	</div>

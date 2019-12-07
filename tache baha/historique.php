@@ -1,3 +1,4 @@
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -7,8 +8,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php
 session_start();
-include"../config.php";	
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,37 +176,15 @@ include"../config.php";
 					</form>
 				</div>
 			</div>
-<?php 
-require_once('../db/DbConnect.php');
-            $db   = new DbConnect();
-            $conn = $db->connect();
 
-            require '../entities/customer.php';
-            require '../core/customerC.php';
-	    	/*$objCustomer = new customerC($conn);
-	    	$objCustomer->setEmail('durgesh@gmail.com');
-	    	$customer = $objCustomer->getCustomerByEmailId();*/
-//session_start();
 
-	    	//$_SESSION['cid'] = $customer['id'];
 
-            require '../entities/cart.php';
-            require '../core/cartC.php';
-            $objCart = new cartC($conn);
-			$objCart->setCid($_SESSION['id']);
-			$cartItems = $objCart->getAllCartItems();
 
-			$cartCss = 'display: none';
-        $emptyCss = 'display: block';
-        if (count($cartItems) > 0) {
-            $cartCss = 'display: block';
-            $emptyCss = 'display: none';
-        }
-  ?>		
+		 		
 			<div class="cart cart box_1"> 
 					
-					<button class="w3view-cart" disabled type="submit" name="submit" value="">
-<a href="checkout.php"  style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php echo count($cartItems);?></sup></a>
+					<button class="w3view-cart" type="submit" name="submit" value="">
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"></sup></a>
 						 </button>
 						
               
@@ -230,7 +207,7 @@ require_once('../db/DbConnect.php');
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="index.php" class="act">Home</a></li>	
+						<li><a href="index.php" >Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -281,7 +258,8 @@ require_once('../db/DbConnect.php');
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
-												<li><a href="historique.php">historique achats</a></li>
+						<li><a href="profile.php">Profile</a></li>
+						<li><a href="historique.php" class="act">historique achats</a></li>
 
 					</ul>
 				</div>
@@ -289,146 +267,68 @@ require_once('../db/DbConnect.php');
 		</div>
 	</div>
 	<!-- //navigation -->
+*********************************************
 
-************************************************
+<?php 
 
- <div class="col-md-10 col-md-offset-1">
-        <div class="alert alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
-            <div id="result"></div>
-        </div>
-        <center><img src="images/loader.gif" id="loader"></center>
-    </div>
-*
-    <div id="fullCart" class="row" style="<?=$cartCss?>">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Workshop</th>
-                    <th>Seats</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Total</th>
-                    <td>
-                        <button id="clearItems" type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span> Clear
-                        </button>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $subTotal   = 0;
-                        $quantity   = 0;
-                        $tax        = 10;
-                        foreach ($cartItems as $key => $cartItem) {
-                          $subTotal += $cartItem['totalAmount'];
-                          $quantity += $cartItem['quantity'];
-                     ?>
-                <tr id="item_<?= $cartItem['id']; ?>">
-                    <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="../back-end/<?= $cartItem['image']; ?>" style="width: 72px; height: 72px;"> </a>
-                            <div style="padding-left: 10px;" class="media-body">
-                                <h4 class="media-heading"><a href="#"><?= $cartItem['title']; ?></a></h4>
-                               
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <select onchange="updateCart(<?= $cartItem['pid']; ?>, <?= $cartItem['id']; ?>)" class="form-control" id="seat_<?= $cartItem['id']; ?>">
-                            <?php 
-                                for ($i=1,$f=11; $i < $f ; $i++) { 
-                            ?>
-                            <option value="<?= $i; ?>" <?php echo ($i == $cartItem['quantity']) ? "selected" : ''; ?>><?= $i; ?></option>
-                        <?php } ?>
-                        </select>
-                        
-                    </td>
-                    <td class="col-sm-1 col-md-1 text-center">
-                        <strong><span id="price">
-<?php
-$promid=$cartItem['pid'];
-$sql="SELECT * from promotion where idproduit =$promid ";
-$db = config::getConnexion();
-$idPromo=$db->query($sql);
-$prix = 0;
-foreach($idPromo as $nn){
- $prix = $nn['pourcentage'];
- $date_debut=$nn['datedebut'];
- $date_fin=$nn['datefin'];
-}
-?>
-<?php
-if($prix!=0){
- ?>                        	
-<del><?php echo number_format($cartItem['prix'],2)  ?> TND</del> 
-                        	<?= number_format($cartItem['prix']-($cartItem['prix']*($prix/100)),2); ?> TND</span>
-                        </strong>
-                        <?php } ?>
-<?php  if ($prix==0) {    ?>  
-	<?= number_format($cartItem['prix'],2); ?> </span>
-                        </strong>
-<?php }  ?>
-                    </td>
-                    <td class="col-sm-1 col-md-1 text-center">
-                        <strong><span id="totalPrice_<?= $cartItem['id']; ?>"><?= number_format( $cartItem['totalAmount'], 2 );  ?>TND</span>
-                        </strong>
-                    </td>
-                    <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger" onclick="removeItem(<?= $cartItem['id']; ?>)">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button>
-                    </td>
-                </tr>
-            <?php } ?>
-                <tr>
-                    <td colspan="4" align="right">Subtotal</td>
-                    <td class="text-right">
-                        <strong><span style="font-size: 18px;">&#x20b9;</span>
-                            <span id="subTotal"><?= number_format( $subTotal, 2 ); ?></span>
-                        </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" align="right">Taxes</td>
-                    <td class="text-right">
-                        <strong><span style="font-size: 18px;">&#x20b9;</span>
-                            <span id="taxes"><?= number_format( $tax * $quantity, 2 ); ?></span>
-                        </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" align="right">Total</td>
-                    <td class="text-right">
-                        <strong><span style="font-size: 18px;">&#x20b9;</span>
-                            <span id="finalPrice"><?= number_format( $subTotal+($tax * $quantity), 2 ); ?></span>
-                        </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" align="right">
-                        <a href="index.php" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> buy products
-                        </a>
-                    </td>
-                    <td >
-<a href="checkoutf.php" class="btn btn-success"> Checkout <span class="glyphicon glyphicon-play"></span></a>  
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-*******************************
-    <div id="emptyCart" class="row" style="<?=$emptyCss?>">
-        <div class="col-md-12 text-center">
-            <p><strong>Your cart is empty. <a href="index.php">Click here</a> to buy products.</strong></p>
-        </div>
-    </div>
+//session_start();
+
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
 
 
-**************************************
+           require '../entities/transaction.php';
+            require '../core/transactionC.php';
+
+
+//$data= ' thanks for ordering &transaction id='.$tId.'&order_id='.$orderId.'&amount='.$objtrans->getAmount();
+//echo $data;
+
+
+
+  
+             $objTrans1 = new transactionC($conn);
+	$transactions = $objTrans1->getAlltransactions();
+
+ ?>
+<div class="container">
+		<table class="table table-striped">
+		 	<caption><strong>products purchased <?php echo('session'.$_SESSION['id']);?> </strong></caption>
+		 	<thead>
+		 		<tr>
+		 			<th>#id</th>
+		 			<th>Customer</th>
+		 			<th>Quantity</th>
+		 			<th>Amount</th>
+		 			<th>Status</th>
+		 			<th> purchase DATE</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		<?php 
+		 			foreach ($transactions as $key => $transaction) {
+		 		//echo ($transaction['cid']); 	
+		 		//echo ($_SESSION['id']); 	
+		 			
+		 		if($transaction['cid']==$_SESSION['id'])
+		        {
+		 		?>
+		 		<tr>
+		 			<td><a href="reportDetails.php?tid=<?= $transaction['id']; ?>"><?= $transaction['id']; ?></a></td>
+		 			<td><?= $_SESSION['nom']; ?></td>
+		 			<td><?= $transaction['quantity']; ?></td>
+		 			<td><?= $transaction['amount']; ?></td>
+		 			<td><?= $objTrans1->getOrderStatusById($transaction['orderStatus']); ?></td>
+		 			<td><?= $transaction['createdOn']; ?></td>
+		 		</tr>
+		 	<?php } } ?>
+		 	</tbody>
+		</table>
+	</div>
+
+
+******************************************************
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -495,89 +395,5 @@ if($prix!=0){
 	<!-- //footer --> 
   
 </body>
-<script type="text/javascript">
-    function updateCart(pId, cartId) {
-        console.log($('#seat_'+cartId).val())
-        $('#loader').show();
-        $.ajax({
-            url: "action.php",
-            data: "wId=" + pId + "&action=update&quantity="+$('#seat_'+cartId).val(),
-            method: "post"
-        }).done(function(response) {
-            console.log(response)
-            var data = JSON.parse(response);
-            $('#loader').hide();
-            $('.alert').show();
-            if(data.status == 0) {
-                $('.alert').addClass('alert-danger');
-                $('#result').html(data.msg);
-            } else {
-                $('.alert').addClass('alert-success');
-                $('#result').html(data.msg);
-                $('#totalPrice_'+cartId).text( data.data.totalPrice );
-                $('#subTotal').text( data.data.subTotal);
-                $('#taxes').text( data.data.taxes);
-                $('#finalPrice').text( data.data.finalPrice);
-            }
-        })
-    }
 
-    function removeItem(cartId) {
-        $('#loader').show();
-        $.ajax({
-            url: "action.php",
-            data: "cartId=" + cartId + "&action=remove",
-            method: "post"
-        }).done(function(response) {
-            console.log(response);
-            var data = JSON.parse(response);
-            $('#loader').hide();
-            $('.alert').show();
-            if(data.status == 0) {
-                $('.alert').addClass('alert-danger');
-                $('#result').html(data.msg);
-            } else {
-                $('.alert').addClass('alert-success');
-                $('#result').html(data.msg);
-                $('#item_'+cartId).remove();
-                $('#itemCount').text( data.data.itemCount);
-
-                if (data.data.itemCount == 0.00) {
-                    $('#fullCart').hide();
-                    $('#emptyCart').show();
-                } else {
-                    $('#subTotal').text( data.data.subTotal);
-                    $('#taxes').text( data.data.taxes);
-                    $('#finalPrice').text( data.data.finalPrice);
-                }
-            }
-        })
-    }
-
-    $('#clearItems').click(function(){
-        $('#loader').show();
-        $.ajax({
-            url: "action.php",
-            data: "action=clear",
-            method: "post"
-        }).done(function(response) {
-            console.log(response);
-            var data = JSON.parse(response);
-            $('#loader').hide();
-            $('.alert').show();
-            if(data.status == 0) {
-                $('.alert').addClass('alert-danger');
-                $('#result').html(data.msg);
-            } else {
-                $('.alert').addClass('alert-success');
-                $('#result').html(data.msg);
-
-                $('#itemCount').text( 0 );
-                $('#fullCart').hide();
-                $('#emptyCart').show();
-            }
-        })
-    })
-
-</script>
 </html>

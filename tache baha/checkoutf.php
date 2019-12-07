@@ -7,6 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php
 session_start();
+include"../config.php";	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,9 +184,9 @@ require_once('../db/DbConnect.php');
 
             require '../entities/customer.php';
             require '../core/customerC.php';
-	    	$objCustomer = new customerC($conn);
+	    	/*$objCustomer = new customerC($conn);
 		    $objCustomer->setId($_SESSION['cid']);
- 		    $customer = $objCustomer->getCustomerById();
+ 		    $customer = $objCustomer->getCustomerById();*/
 //session_start();
 
 	
@@ -192,7 +194,7 @@ require_once('../db/DbConnect.php');
             require '../entities/cart.php';
             require '../core/cartC.php';
             $objCart = new cartC($conn);
-			$objCart->setCid($customer['id']);
+			$objCart->setCid($_SESSION['id']);
  $cartItems = $objCart->getAllCartItems();
     $cartPrices = $objCart->calculatePrices($cartItems);
 
@@ -279,6 +281,8 @@ require_once('../db/DbConnect.php');
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+												<li><a href="historique.php">historique achats</a></li>
+
 					</ul>
 				</div>
 			</nav>
@@ -290,7 +294,7 @@ require_once('../db/DbConnect.php');
  <div class="container well">
     <center><h2>checkout </h2></center>
     <hr>
-  <form method="post" action="payer.php" class="form-horizontal">
+  <form method="post" action="payer.php" enctype="multipart/form-data" class="form-horizontal">
     
     <!-- <input type="hidden" name="tid" id="tid" readonly />
     <input type="hidden" name="merchant_id" value=""/>
@@ -309,7 +313,7 @@ require_once('../db/DbConnect.php');
             <div class="input-group-addon addon-diff-color">
                 <span class="glyphicon glyphicon-user"></span>
             </div>
-            <input class="form-control" type="text" id="billing_name" name="billing_name" placeholder="Mr Rakesh" value="<?= $customer['name']; ?>">
+            <input class="form-control" type="text" id="billing_name" required name="billing_name" placeholder="Mr Rakesh" value="<?= $_SESSION['nom']; ?>" disabled >
           </div>
         </div>
 
@@ -318,7 +322,7 @@ require_once('../db/DbConnect.php');
             <div class="input-group-addon addon-diff-color">
                 <span class="glyphicon glyphicon-envelope"></span>
             </div>
-            <input class="form-control" type="text" id="billing_email" name="billing_email" placeholder="client@gmail.com" value="<?= $customer['email']; ?>">
+            <input class="form-control" type="text" id="billing_email" disabled required name="billing_email" placeholder="client@gmail.com" value="<?= $_SESSION['email']; ?>">
           </div>
         </div>
 
@@ -327,7 +331,7 @@ require_once('../db/DbConnect.php');
             <div class="input-group-addon addon-diff-color">
                 <span class="glyphicon glyphicon-earphone"></span>
             </div>
-            <input class="form-control" type="text" id="billing_tel" name="billing_tel" placeholder="123456789" value="<?= $customer['mobile']; ?>">
+            <input class="form-control" type="text" id="billing_tel" disabled required minlength="8" maxlength="8" name="billing_tel" placeholder="12345678" value="<?= $_SESSION['tel']; ?>">
           </div>
         </div>
 
@@ -336,7 +340,7 @@ require_once('../db/DbConnect.php');
             <div class="input-group-addon addon-diff-color">
                 <span class="glyphicon glyphicon-home"></span>
             </div>
-            <input class="form-control" type="text" id="billing_address" name="billing_address" placeholder="11, Abc road" value="<?= $customer['address']; ?>">
+            <input class="form-control" type="text" id="billing_address" name="billing_address" required placeholder="11, Abc road" value="<?= $_SESSION['adresse']; ?>">
           </div>
         </div>
 
@@ -366,7 +370,7 @@ require_once('../db/DbConnect.php');
                 <div class="input-group-addon addon-diff-color">
                     <span class="glyphicon glyphicon-map-marker"></span>
                 </div>
-                <input class="form-control" type="text" id="billing_zip" name="billing_zip" placeholder="10001" value="411027">
+                <input class="form-control" type="text" id="billing_zip" name="billing_zip" required placeholder="10001" value="411027">
               </div>
             </div>
           </div> 
@@ -376,7 +380,7 @@ require_once('../db/DbConnect.php');
             <div class="input-group-addon addon-diff-color">
                 <span class="glyphicon glyphicon-home"></span>
             </div>
-            <input class="form-control" type="text" id="billing_country" name="billing_country" placeholder="tunisia" value="tunisia">
+            <input class="form-control" type="text" id="billing_country" name="billing_country" disabled required placeholder="tunisia" value="tunisia">
           </div>
         </div>
       </div>
@@ -394,7 +398,23 @@ require_once('../db/DbConnect.php');
                     <a href="#"><?= $cartItem['title']; ?></a>
                   </td>
                   <td width="15%">
-                    <strong><?= ($cartItem['price']*$cartItem['quantity']); ?><span>TND</span></strong>
+<?php
+$promid=$cartItem['pid'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = 0;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
+ ?>   
+ <?php
+if($prix!=0){
+ ?>  
+ <del><?php echo  ($cartItem['prix']*$cartItem['quantity']);  ?>TND</del> <?php } ?>                  	
+                    <strong><?= ( ($cartItem['prix']-($cartItem['prix']*($prix/100)))*$cartItem['quantity']); ?><span>TND</span></strong>
                   </td>
               </tr>
               <?php } ?>
@@ -407,7 +427,7 @@ require_once('../db/DbConnect.php');
           </p>
         </div>
         <div class="text-right">
-          <input type="submit" value="Pay Now" class="btn btn-success btn-block">
+          <input type="submit" value="Pay Now" name="sendmail" class="btn btn-success btn-block">
         </div>
       </div>
     </div>
