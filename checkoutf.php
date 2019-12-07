@@ -4,10 +4,16 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+session_start();
+include"../config.php";	
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>High-Tech-Info</title>
+<title>High-Tech-Info<</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,21 +24,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //for-mobile-apps -->
 <!-- Custom Theme files -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> 
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //Custom Theme files -->
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/jquery.countdown.css" /> <!-- countdown --> 
 <!-- //js -->  
 <!-- web fonts --> 
 <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- //web fonts --> 
-<!-- for bootstrap working -->
-<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-<!-- //for bootstrap working -->
+<!-- //web fonts -->  
 <!-- start-smooth-scrolling -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
@@ -43,8 +49,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 </script>
 <!-- //end-smooth-scrolling --> 
+<!----------------------------- lllllllll------>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head> 
-<body> 
+<style type="text/css">
+	.alert, #loader {
+    	display: none;
+    }
+
+    .glyphicon, #itemCount {
+    	font-size: 18px;
+    }
+</style>
+<body class="grey lighten-3">
+	<!-- for bootstrap working -->
+	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+	<!-- //for bootstrap working -->
 	<!-- header modal -->
 	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
@@ -125,7 +152,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+<!---!><script>
+		$('#myModal88').modal('show');
+	</script>  
+<!-->
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
@@ -134,7 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 			</div>
 			<div class="w3l_logo">
-				<h1><a href="index.html">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
+				<h1><a href="index.php">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
 			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
@@ -146,13 +177,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 				</div>
 			</div>
+<?php 
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
+
+            require '../entities/customer.php';
+            require '../core/customerC.php';
+	    	/*$objCustomer = new customerC($conn);
+		    $objCustomer->setId($_SESSION['cid']);
+ 		    $customer = $objCustomer->getCustomerById();*/
+//session_start();
+
+	
+
+            require '../entities/cart.php';
+            require '../core/cartC.php';
+            $objCart = new cartC($conn);
+			$objCart->setCid($_SESSION['id']);
+ $cartItems = $objCart->getAllCartItems();
+    $cartPrices = $objCart->calculatePrices($cartItems);
+
+
+
+
+
+		
+  ?>		
 			<div class="cart cart box_1"> 
-				<form action="#" method="post" class="last"> 
-					<input type="hidden" name="cmd" value="_cart" />
-					<input type="hidden" name="display" value="1" />
-					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-				</form>   
-			</div>  
+					
+					<button class="w3view-cart" type="submit" name="submit" value="">
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php echo count($cartItems);?></sup></a>
+						 </button>
+						
+              
+			</div>   
 		</div>
 	</div>
 	<!-- //header -->
@@ -171,7 +230,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>	
+						<li><a href="index.html" class="act">Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -214,7 +273,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 							</ul>
 						</li>
-						<li><a href="about.html" class="act">About Us</a></li> 
+						<li><a href="about.html">About Us</a></li> 
 						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="icons.html">Web Icons</a></li>
@@ -222,154 +281,161 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+												<li><a href="historique.php">historique achats</a></li>
+
 					</ul>
 				</div>
 			</nav>
 		</div>
 	</div>
 	<!-- //navigation -->
-	<!-- banner -->
-	<div class="banner banner10">
-		<div class="container">
-			<h2>About Us</h2>
-		</div>
-	</div>
-	<!-- //banner -->   
-	<!-- breadcrumbs -->
-	<div class="breadcrumb_dress">
-		<div class="container">
-			<ul>
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-				<li>About Us</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //breadcrumbs --> 
-	<!-- about -->
-	<div class="about">
-		<div class="container">	
-			<div class="w3ls_about_grids">
-				<div class="col-md-6 w3ls_about_grid_left">
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-						cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-						anim id est laborum.</p>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
-					</div>
-					<div class="clearfix"> </div>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 w3ls_about_grid_right">
-					<img src="images/52.jpg" alt=" " class="img-responsive" />
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //about --> 
-	<!-- team -->
-	<div class="team">
-		<div class="container">
-			<h3>Meet Our Team</h3>
-			<div class="wthree_team_grids">
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t4.png" alt=" " class="img-responsive" />
-					<h4>Smith Allen <span>Manager</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t5.png" alt=" " class="img-responsive" />
-					<h4>Laura James <span>Designer</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t6.png" alt=" " class="img-responsive" />
-					<h4>Crisp Doe <span>Director</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t7.png" alt=" " class="img-responsive" />
-					<h4>Linda Rosy <span>Quality Checker</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-					voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-					repellat.</p>
-			</div>
-		</div>
-	</div>
-	<!-- //team -->
-	<!-- team-bottom -->
-	<div class="team-bottom">
-		<div class="container">
-			<h3>Are You Ready For Deals? Flat <span>30% Offer </span>on Mobiles</h3>
-			<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-				voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-				repellat.</p>
-			<a href="products.html">Shop Now</a>
-		</div>
-	</div>
-	<!-- //team-bottom -->
-	<!-- newsletter -->
-	<div class="newsletter">
-		<div class="container">
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3>Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //newsletter -->
+*********************************************
+
+ <div class="container well">
+    <center><h2>checkout </h2></center>
+    <hr>
+  <form method="post" action="payer.php" enctype="multipart/form-data" class="form-horizontal">
+    
+    <!-- <input type="hidden" name="tid" id="tid" readonly />
+    <input type="hidden" name="merchant_id" value=""/>
+    <input type="hidden" name="order_id" value=""/>
+    <input type="hidden" name="amount" value="10.00"/> -->
+    <input type="hidden" name="currency" value="INR"/>
+    <input type="hidden" name="redirect_url" value="http://tutorials.lcl/cart/ccavenue/ccavResponseHandler.php"/>
+    <input type="hidden" name="cancel_url" value="http://tutorials.lcl/cart/ccavenue/ccavResponseHandler.php"/>
+    <input type="hidden" name="language" value="EN"/>
+
+    <div class="row">
+      <div class="col-md-7 well">
+        <h3>Billing Address</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_name" required name="billing_name" placeholder="Mr Rakesh" value="<?= $_SESSION['nom']; ?>" disabled >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_email" disabled required name="billing_email" placeholder="client@gmail.com" value="<?= $_SESSION['email']; ?>">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-earphone"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_tel" disabled required minlength="8" maxlength="8" name="billing_tel" placeholder="12345678" value="<?= $_SESSION['tel']; ?>">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-home"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_address" name="billing_address" required placeholder="11, Abc road" value="<?= $_SESSION['adresse']; ?>">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-home"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_city" name="billing_city" placeholder="Pune" value="Pune">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon addon-diff-color">
+                    <span class="glyphicon glyphicon-home"></span>
+                </div>
+                <input class="form-control" type="text" id="billing_state" name="billing_state" placeholder="MH" value="MH">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon addon-diff-color">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                </div>
+                <input class="form-control" type="text" id="billing_zip" name="billing_zip" required placeholder="10001" value="411027">
+              </div>
+            </div>
+          </div> 
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon addon-diff-color">
+                <span class="glyphicon glyphicon-home"></span>
+            </div>
+            <input class="form-control" type="text" id="billing_country" name="billing_country" disabled required placeholder="tunisia" value="tunisia">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-1 well">
+        <div class="text-right">
+          <h3>Your products</h3>
+          <h4><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?= $cartPrices['itemCount']; ?></sup></h4>
+          <table class="table">
+            <tbody>
+              <?php 
+                foreach ($cartItems as $key => $cartItem) { 
+               ?>    
+                <tr>
+                  <td align="right" width="85%">
+                    <a href="#"><?= $cartItem['title']; ?></a>
+                  </td>
+                  <td width="15%">
+<?php
+$promid=$cartItem['pid'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = 0;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
+ ?>   
+ <?php
+if($prix!=0){
+ ?>  
+ <del><?php echo  ($cartItem['prix']*$cartItem['quantity']);  ?>TND</del> <?php } ?>                  	
+                    <strong><?= ( ($cartItem['prix']-($cartItem['prix']*($prix/100)))*$cartItem['quantity']); ?><span>TND</span></strong>
+                  </td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+          <hr style="border: 1px dotted gray;">
+          <p>Total: <strong>
+              <?= $cartPrices['finalPrice']; ?><span>TND</span>
+            </strong>
+          </p>
+        </div>
+        <div class="text-right">
+          <input type="submit" value="Pay Now" name="sendmail" class="btn btn-success btn-block">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+******************************************************
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -429,27 +495,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 			<div class="container">
-				<p>&copy; 2019 High-Tech-Info Store. All rights reserved </p>
+				<p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
 	</div>
-	<!-- //footer -->  
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
-
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) { 
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js --> 
+	<!-- //footer --> 
+  
 </body>
+
 </html>

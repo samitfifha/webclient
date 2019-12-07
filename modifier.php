@@ -1,6 +1,6 @@
 <?php
-include 'C:/wamp64/www/web/front/entities/client.php';
-include 'C:/wamp64/www/web/front/core/clientC.php';
+include 'C:/wamp64/www/web/entities/client.php';
+include 'C:/wamp64/www/web/core/clientC.php';
 
 
 
@@ -25,7 +25,7 @@ $password=$_POST['password'];
 
  $clientC=new clientC();
 $clientC->modifierclient($id,$nom,$prenom,$username,$adresse,$tel,$email,$password);
-  
+header('location: profile.php');
          
  
  

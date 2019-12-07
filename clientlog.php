@@ -1,7 +1,10 @@
 <?PHP 
-require_once 'C:/wamp64/www/web/front/entities/client.php';
+require_once 'C:/wamp64/www/web/entities/client.php';
+
 if ($_GET['action']=="out") {
 	session_start();
+//session_unset ();
+
 session_destroy();
 header("Location:index.php");
 

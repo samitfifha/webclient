@@ -1,13 +1,18 @@
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>High-Tech-Info</title>
+<title>High-Tech-Info<</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,21 +23,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //for-mobile-apps -->
 <!-- Custom Theme files -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> 
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //Custom Theme files -->
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/jquery.countdown.css" /> <!-- countdown --> 
 <!-- //js -->  
 <!-- web fonts --> 
 <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- //web fonts --> 
-<!-- for bootstrap working -->
-<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-<!-- //for bootstrap working -->
+<!-- //web fonts -->  
 <!-- start-smooth-scrolling -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
@@ -43,8 +48,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 </script>
 <!-- //end-smooth-scrolling --> 
+<!----------------------------- lllllllll------>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head> 
-<body> 
+<style type="text/css">
+	.alert, #loader {
+    	display: none;
+    }
+
+    .glyphicon, #itemCount {
+    	font-size: 18px;
+    }
+</style>
+<body class="grey lighten-3">
+	<!-- for bootstrap working -->
+	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+	<!-- //for bootstrap working -->
 	<!-- header modal -->
 	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
@@ -125,7 +151,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+<!---!><script>
+		$('#myModal88').modal('show');
+	</script>  
+<!-->
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
@@ -134,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 			</div>
 			<div class="w3l_logo">
-				<h1><a href="index.html">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
+				<h1><a href="index.php">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
 			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
@@ -146,13 +176,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 				</div>
 			</div>
+
+
+
+
+		 		
 			<div class="cart cart box_1"> 
-				<form action="#" method="post" class="last"> 
-					<input type="hidden" name="cmd" value="_cart" />
-					<input type="hidden" name="display" value="1" />
-					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-				</form>   
-			</div>  
+					
+					<button class="w3view-cart" type="submit" name="submit" value="">
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"></sup></a>
+						 </button>
+						
+              
+			</div>   
 		</div>
 	</div>
 	<!-- //header -->
@@ -171,7 +207,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>	
+						<li><a href="index.php" >Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -214,7 +250,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 							</ul>
 						</li>
-						<li><a href="about.html" class="act">About Us</a></li> 
+						<li><a href="about.html">About Us</a></li> 
 						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="icons.html">Web Icons</a></li>
@@ -222,154 +258,77 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+						<li><a href="profile.php">Profile</a></li>
+						<li><a href="historique.php" class="act">historique achats</a></li>
+
 					</ul>
 				</div>
 			</nav>
 		</div>
 	</div>
 	<!-- //navigation -->
-	<!-- banner -->
-	<div class="banner banner10">
-		<div class="container">
-			<h2>About Us</h2>
-		</div>
+*********************************************
+
+<?php 
+
+//session_start();
+
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
+
+
+           require '../entities/transaction.php';
+            require '../core/transactionC.php';
+
+
+//$data= ' thanks for ordering &transaction id='.$tId.'&order_id='.$orderId.'&amount='.$objtrans->getAmount();
+//echo $data;
+
+
+
+  
+             $objTrans1 = new transactionC($conn);
+	$transactions = $objTrans1->getAlltransactions();
+
+ ?>
+<div class="container">
+		<table class="table table-striped">
+		 	<caption><strong>products purchased <?php echo('session'.$_SESSION['id']);?> </strong></caption>
+		 	<thead>
+		 		<tr>
+		 			<th>#id</th>
+		 			<th>Customer</th>
+		 			<th>Quantity</th>
+		 			<th>Amount</th>
+		 			<th>Status</th>
+		 			<th> purchase DATE</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		<?php 
+		 			foreach ($transactions as $key => $transaction) {
+		 		//echo ($transaction['cid']); 	
+		 		//echo ($_SESSION['id']); 	
+		 			
+		 		if($transaction['cid']==$_SESSION['id'])
+		        {
+		 		?>
+		 		<tr>
+		 			<td><a href="reportDetails.php?tid=<?= $transaction['id']; ?>"><?= $transaction['id']; ?></a></td>
+		 			<td><?= $_SESSION['nom']; ?></td>
+		 			<td><?= $transaction['quantity']; ?></td>
+		 			<td><?= $transaction['amount']; ?></td>
+		 			<td><?= $objTrans1->getOrderStatusById($transaction['orderStatus']); ?></td>
+		 			<td><?= $transaction['createdOn']; ?></td>
+		 		</tr>
+		 	<?php } } ?>
+		 	</tbody>
+		</table>
 	</div>
-	<!-- //banner -->   
-	<!-- breadcrumbs -->
-	<div class="breadcrumb_dress">
-		<div class="container">
-			<ul>
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-				<li>About Us</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //breadcrumbs --> 
-	<!-- about -->
-	<div class="about">
-		<div class="container">	
-			<div class="w3ls_about_grids">
-				<div class="col-md-6 w3ls_about_grid_left">
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-						cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-						anim id est laborum.</p>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
-					</div>
-					<div class="clearfix"> </div>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 w3ls_about_grid_right">
-					<img src="images/52.jpg" alt=" " class="img-responsive" />
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //about --> 
-	<!-- team -->
-	<div class="team">
-		<div class="container">
-			<h3>Meet Our Team</h3>
-			<div class="wthree_team_grids">
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t4.png" alt=" " class="img-responsive" />
-					<h4>Smith Allen <span>Manager</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t5.png" alt=" " class="img-responsive" />
-					<h4>Laura James <span>Designer</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t6.png" alt=" " class="img-responsive" />
-					<h4>Crisp Doe <span>Director</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t7.png" alt=" " class="img-responsive" />
-					<h4>Linda Rosy <span>Quality Checker</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-					voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-					repellat.</p>
-			</div>
-		</div>
-	</div>
-	<!-- //team -->
-	<!-- team-bottom -->
-	<div class="team-bottom">
-		<div class="container">
-			<h3>Are You Ready For Deals? Flat <span>30% Offer </span>on Mobiles</h3>
-			<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-				voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-				repellat.</p>
-			<a href="products.html">Shop Now</a>
-		</div>
-	</div>
-	<!-- //team-bottom -->
-	<!-- newsletter -->
-	<div class="newsletter">
-		<div class="container">
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3>Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //newsletter -->
+
+
+******************************************************
 	<!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -429,27 +388,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 			<div class="container">
-				<p>&copy; 2019 High-Tech-Info Store. All rights reserved </p>
+				<p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
 	</div>
-	<!-- //footer -->  
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
-
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) { 
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js --> 
+	<!-- //footer --> 
+  
 </body>
+
 </html>

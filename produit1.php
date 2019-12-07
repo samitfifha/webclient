@@ -4,10 +4,12 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>High-Tech-Info</title>
+<title>High-Tech-Info<</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,6 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Custom Theme files -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> 
+<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //Custom Theme files -->
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
@@ -43,6 +46,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 </script>
 <!-- //end-smooth-scrolling --> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head> 
 <body> 
 	<!-- header modal -->
@@ -134,7 +139,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 			</div>
 			<div class="w3l_logo">
-				<h1><a href="index.html">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
+				<h1><a href="index.php">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
 			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
@@ -171,10 +176,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>	
+						<li><a href="index.php">Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle act" data-toggle="dropdown" >Products <b class="caret"></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="col-sm-3">
@@ -214,7 +219,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 							</ul>
 						</li>
-						<li><a href="about.html" class="act">About Us</a></li> 
+						<li><a href="about.html">About Us</a></li> 
 						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="icons.html">Web Icons</a></li>
@@ -229,148 +234,299 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //navigation -->
 	<!-- banner -->
-	<div class="banner banner10">
+	<div class="banner banner1">
 		<div class="container">
-			<h2>About Us</h2>
+			<h2>Great Offers on <span>Mobiles</span> Flat <i>35% Discount</i></h2> 
 		</div>
-	</div>
-	<!-- //banner -->   
+	</div> 
 	<!-- breadcrumbs -->
 	<div class="breadcrumb_dress">
 		<div class="container">
 			<ul>
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-				<li>About Us</li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+				<li>Products</li>
 			</ul>
 		</div>
 	</div>
 	<!-- //breadcrumbs --> 
-	<!-- about -->
-	<div class="about">
-		<div class="container">	
-			<div class="w3ls_about_grids">
-				<div class="col-md-6 w3ls_about_grid_left">
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-						cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-						anim id est laborum.</p>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+	<!-- mobiles -->
+	<div class="mobiles">
+		<div class="container">
+			<div class="w3ls_mobiles_grids">
+				<div class="col-md-4 w3ls_mobiles_grid_left">
+					<div class="w3ls_mobiles_grid_left_grid">
+						<h3>Categories</h3>
+						<div class="w3ls_mobiles_grid_left_grid_sub">
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							  <div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingOne">
+								  <h4 class="panel-title asd">
+									<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>New Arrivals
+									</a>
+								  </h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								  <div class="panel-body panel_text">
+									<ul>
+										<li><a href="products.html">Mobiles</a></li>
+										<li><a href="products1.html">Laptop</a></li>
+										<li><a href="products2.html">Tv</a></li>
+										<li><a href="products.html">Wearables</a></li>
+										<li><a href="products2.html">Refrigerator</a></li>
+									</ul>
+								  </div>
+								</div>
+							  </div>
+
+
+
+
+
+
+
+
+
+							  <div class="panel panel-default">
+								<div class="panel-heading" role="tab" id="headingTwo">
+								  <h4 class="panel-title asd">
+									<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Accessories
+									</a>
+								  </h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								   <div class="panel-body panel_text">
+
+
+
+
+<body>
+<?PHP
+include_once "../core/categoriec.php";
+$categorie1c=new categoriec();
+$listecategorie=$categorie1c->affichercategorie();
+
+//var_dump($listeEmployes->fetchAll());
+?>
+
+<?PHP
+foreach($listecategorie as $row1){
+    ?>
+
+
+
+
+
+
+
+									<ul>
+										<li><a href=""> <?PHP echo $row1['nom']; ?>   </a></li>
+									
+									</ul>
+
+
+								    <?PHP
+
+}
+?>
+</body>
+
+
+		
+
+								  </div>
+								</div>
+							  </div>
+							</div>
+							
+						</div>
 					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
+					
+					<div class="w3ls_mobiles_grid_left_grid">
+					
+					</div>
+				</div>
+				<div class="col-md-8 w3ls_mobiles_grid_right">
+					<div class="col-md-6 w3ls_mobiles_grid_right_left">
+						<div class="w3ls_mobiles_grid_right_grid1">
+							<img src="images/46.jpg" alt=" " class="img-responsive" />
+							<div class="w3ls_mobiles_grid_right_grid1_pos1">
+								<h3>Smart Phones<span>Up To</span> 15% Discount</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 w3ls_mobiles_grid_right_left">
+						<div class="w3ls_mobiles_grid_right_grid1">
+							<img src="images/47.jpg" alt=" " class="img-responsive" />
+							<div class="w3ls_mobiles_grid_right_grid1_pos">
+								<h3>Top 10 Latest<span>Mobile </span>& Accessories</h3>
+							</div>
+						</div>
 					</div>
 					<div class="clearfix"> </div>
-					<div class="col-xs-2 w3ls_about_grid_left1">
-						<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+
+					<div class="w3ls_mobiles_grid_right_grid2">
+						<div class="w3ls_mobiles_grid_right_grid2_left">
+							<h3>Showing Results: 0-1</h3>
+						</div>
+						<div class="w3ls_mobiles_grid_right_grid2_right">
+							<label>
+									Trier par prix:
+									<select class="input-select" size="1" onChange="location = this.options[this.selectedIndex].value;">
+										<option value="produit1.php?produit1=1">Default</option>
+										<option value="produit1.php?ProduitsTries=1">Le moins cher</option>
+										<option value="produit1.php?ProduitsTriesDesc=1">Le Plus cher</option>
+										<option value="produit1.php?ProduitsTriesA=1"> A-Z</option>
+										<option value="produit1.php?ProduitsTriesZ=1">Z-A</option>
+										<option value="produit1.php?ProduitsTriesQA=1">Le plus Quant</option>
+										<option value="produit1.php?ProduitsTriesQD=1">Le moins Quant</option>
+									</select>
+								</label>
+
+						</div>
+						<div class="clearfix"> </div>
 					</div>
-					<div class="col-xs-10 w3ls_about_grid_left2">
-						<p>Sunt in culpa qui officia deserunt mollit 
-							anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse 
-						cillum dolore eu fugiat nulla pariatur.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 w3ls_about_grid_right">
-					<img src="images/52.jpg" alt=" " class="img-responsive" />
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //about --> 
-	<!-- team -->
-	<div class="team">
-		<div class="container">
-			<h3>Meet Our Team</h3>
-			<div class="wthree_team_grids">
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t4.png" alt=" " class="img-responsive" />
-					<h4>Smith Allen <span>Manager</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t5.png" alt=" " class="img-responsive" />
-					<h4>Laura James <span>Designer</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t6.png" alt=" " class="img-responsive" />
-					<h4>Crisp Doe <span>Director</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<img src="images/t7.png" alt=" " class="img-responsive" />
-					<h4>Linda Rosy <span>Quality Checker</span></h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-					voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-					repellat.</p>
-			</div>
-		</div>
-	</div>
-	<!-- //team -->
-	<!-- team-bottom -->
-	<div class="team-bottom">
-		<div class="container">
-			<h3>Are You Ready For Deals? Flat <span>30% Offer </span>on Mobiles</h3>
-			<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
-				voluptatibus maiores alias consequatur aut perferendis doloribus asperiores 
-				repellat.</p>
-			<a href="products.html">Shop Now</a>
-		</div>
-	</div>
-	<!-- //team-bottom -->
+				
+                    <div>
+
+
+<body>
+<?PHP
+include "../core/produitcc.php";
+$produit1c=new produitc();
+
+
+
+						if (isset($_GET['search']))
+	{  //$liste = $produitc->rechercherProduits($_GET['search']);
+	 //$result = $produitc->afficherModifierProduit($_GET['idProduit']); 
+
+	 }
+	 else if(isset($_GET['ProduitsTries']))
+	 {
+	 	$liste = $produit1c->triPrix();
+	 }
+	 else if(isset($_GET['ProduitsTriesA']))
+	 {
+	 	$liste = $produit1c->triPrixA();
+	 }
+	 else if(isset($_GET['ProduitsTriesZ']))
+	 {
+	 	$liste = $produit1c->triPrixZ();
+	 }
+	 else if(isset($_GET['ProduitsTriesDesc']))
+	 {
+	 	$liste = $produit1c->triPrixDesc(); 
+	 }
+	  else if(isset($_GET['ProduitsTriesQA']))
+	 {
+	 	$liste = $produit1c->triQuantiteAs(); 
+	 }
+	  else if(isset($_GET['ProduitsTriesQD']))
+	 {
+	 	$liste = $produit1c->triQuantiteDesc(); 
+	 }
+	 else 
+	  {  $liste = $produit1c->afficherproduit(); 
+
+	  }
+
+ ?>
+
+
+
+
+
+<?php
+
+
+
+
+foreach($liste as $row){
+    ?>
+
+
+
+
+
+
+
+
+					<div class="w3ls_mobiles_grid_right_grid3">
+						<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+							<div class="agile_ecommerce_tab_left mobiles_grid">
+								<div class="hs-wrapper hs-wrapper2">
+								 <img src="../back-end/<?php echo $row->image; ?>" width="200" height="300" > 
+                                
+
+
+									<div class="w3_hs_bottom w3_hs_bottom_sub1">
+										<ul>
+											<li>
+												<a href="#" data-toggle="modal" data-target="#myModal9"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<h5><a href="single.html">     <?PHP echo $row->nom; ?>             </a></h5> 
+								<div class="simpleCart_shelfItem">
+									<p><span>$250</span> <i class="item_price"> <?PHP echo $row->prix; ?>       </i></p>
+									<form action="#" method="post">
+										<input type="hidden" name="cmd" value="_cart" />
+										<input type="hidden" name="add" value="1" /> 
+										<input type="hidden" name="w3ls_item" value="Smart Phone" /> 
+										<input type="hidden" name="amount" value="245.00"/>   
+										<button type="submit" class="w3ls-cart">Add to cart</button>
+									<br>
+									<br>
+
+
+
+									</form>
+								</div> 
+                                </div>
+                                </div>
+                                <br>
+ </div>
+
+								    <?PHP
+
+}
+?>
+								
+
+	<!-- //Related Products -->
 	<!-- newsletter -->
-	<div class="newsletter">
-		<div class="container">
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3>Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+	
 	<!-- //newsletter -->
-	<!-- footer -->
+	
+	
+	  <!-- footer -->
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -406,7 +562,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
-						<li><a href="index.html">Home</a></li>
+						<li><a href="index.php">Home</a></li>
 						<li><a href="products.html">Today's Deals</a></li>
 					</ul>
 					<h4>Follow Us</h4>
@@ -429,27 +585,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 			<div class="container">
-				<p>&copy; 2019 High-Tech-Info Store. All rights reserved </p>
+				<p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
 	</div>
 	<!-- //footer -->  
+	<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo2").flexisel({
+				visibleItems:4,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: { 
+					portrait: { 
+						changePoint:568,
+						visibleItems: 1
+					}, 
+					landscape: { 
+						changePoint:667,
+						visibleItems:2
+					},
+					tablet: { 
+						changePoint:768,
+						visibleItems: 3
+					}
+				}
+			});
+			
+		});
+	</script>
+	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
 
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) { 
-        		}
-        	}
-        });
-    </script>  
 	<!-- //cart-js --> 
 </body>
 </html>

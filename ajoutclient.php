@@ -1,6 +1,6 @@
 <?PHP
-require_once 'C:/wamp64/www/web/front/entities/client.php';
-require_once 'C:/wamp64/www/web/front/core/clientC.php';
+require_once 'C:/wamp64/www/web/entities/client.php';
+require_once 'C:/wamp64/www/web/core/clientC.php';
 // var_dump($_POST);
 if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['email']) and isset($_POST['username']) and isset($_POST['adresse']) and isset($_POST['tel']) and isset($_POST['password'])) {
 	// echo "1";

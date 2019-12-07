@@ -1,13 +1,6 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
- ?>
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +24,10 @@ session_start();
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
+
+<script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="controle.js"></script>
+<!--<script src="js/jquery.min.js"></script> !-->
 <link rel="stylesheet" href="css/jquery.countdown.css" /> <!-- countdown --> 
 <!-- //js -->  
 <!-- web fonts --> 
@@ -49,13 +44,24 @@ session_start();
 	});
 </script>
 <!-- //end-smooth-scrolling --> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head> 
+<style type="text/css">
+	.alert, #loader {
+    	display: none;
+    }
+
+    .glyphicon, #itemCount {
+    	font-size: 18px;
+    }
+</style>
 <body>
+		<script type="text/javascript" src="controle.js"></script>
 	<!-- for bootstrap working -->
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- header modal -->
-
 	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -63,7 +69,7 @@ session_start();
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 						&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Connecte-toi</h4>
+					<h4 class="modal-title" id="myModalLabel">Don't Wait, Login now!</h4>
 				</div>
 				<div class="modal-body modal-body-sub">
 					<div class="row">
@@ -71,17 +77,17 @@ session_start();
 							<div class="sap_tabs">	
 								<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 									<ul>
-										<li class="resp-tab-item" aria-controls="tab_item-0"><span>Se Connecter</span></li>
-										<li class="resp-tab-item" aria-controls="tab_item-1"><span>Creer un compte</span></li>
+										<li class="resp-tab-item" aria-controls="tab_item-0"><span>Sign in</span></li>
+										<li class="resp-tab-item" aria-controls="tab_item-1"><span>Sign up</span></li>
 									</ul>		
 									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 										<div class="facts">
 											<div class="register">
-												<form action="clientlog.php" method="post">			
-													<input name="username" placeholder="username" type="text" required="">						
-													<input name="password" placeholder="password" type="password" required="">										
+												<form action="clientlog.php" method="post">
+													<input name="username" id="username" placeholder="username" type="text" >
+													<input name="password" id="password" placeholder="password" type="password">
 													<div class="sign-up">
-														<input type="submit" value="Sign in"/>
+														<input type="submit" value="Sign in" onclick="return verif1()" />
 													</div>
 												</form>
 											</div>
@@ -90,17 +96,17 @@ session_start();
 									<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
 										<div class="facts">
 											<div class="register">
-												<form action="ajoutclient.php" method="post">	
+												<form name="myForm" id="myForm" action="ajoutclient.php" method="post">
 													<input placeholder="Nom" name="nom" id="nom" type="text" >
 													<input placeholder="Prenom" name="prenom" id="prenom" type="text" >
 													<input placeholder="Username" name="username" id="username" type="text" >
 													<input placeholder="adresse" name="adresse" id="adresse" type="text" ">
 													<input placeholder="telephone" name="tel" id="tel" type="text" >
-													<input placeholder="Email Address" name="email" id="email" type="text" >	
-													<input placeholder="Password" name="password" id="password" type="password" >	
+													<input placeholder="Email Address" name="email" id="email" type="text" >
+													<input placeholder="Password" name="password" id="password" type="password" >
 													<input placeholder="Confirm Password" name="password" id="password1" type="password" >
 													<div class="sign-up">
-														<input type="submit" onclick="verif()" value="Create Account"/>
+														<input type="submit" onclick="return verif()" value="Create Account"/>
 													</div>
 												</form>
 											</div>
@@ -140,50 +146,77 @@ session_start();
 			</div>
 		</div>
 	</div>
-	<?php if(!isset($_SESSION['id'])){ ?>
-	<script>
-		$('#myModal88').modal('show');
-	</script>
-	<?php } ?>
-	 
+  <?php if(!isset($_SESSION['id'])){ ?>
+  <script>
+    $('#myModal88').modal('show');
+  </script>
+  <?php } ?>
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
 		<div class="container">
-				
 
 			<div class="w3l_login">
-				<?php if(!isset($_SESSION['id'])){ ?>
-				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-				<?php } else{
+    <?php if(!isset($_SESSION['id'])){ ?>
+        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 
-		?>
-		<a href="clientlog.php?action=out"><span class="glyphicon glyphicon-log-in" ></span></a>
-	<?php	
-	}
-	?>
+
+        <?php } else{
+if ($_SESSION['role']=='admin') {
+
+    ?>
+    <a href="../back-end/index.php"><span class="glyphicon glyphicon-stats" ></span></a>
+<?php } ?>
+    <a href="clientlog.php?action=out"><span class="glyphicon glyphicon-log-in" ></span></a>
+
+  <?php
+  }
+  ?>
 			</div>
-	
-
 			<div class="w3l_logo">
-				<h1><a href="index.html"><img src="images/hightechlogo.png"><span>Your stores. Your place.</span></a></h1>
-			</div>
+<h1><a href="index.php"><center><img src="images/hightech.png"></center><span>Your stores. Your place.</span></a></h1>			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
 				<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
 				<div class="search_form">
 					<form action="#" method="post">
 						<input type="text" name="Search" placeholder="Search...">
-						<input type="submit" value="search">
+						<input type="submit" value="Send">
 					</form>
 				</div>
 			</div>
+<?php 
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
+
+            require '../entities/customer.php';
+            require '../core/customerC.php';
+	    	/*$objCustomer = new customerC($conn);
+	    	$objCustomer->setEmail($_SESSION['email']);
+	    	//$objCustomer->getCustomerById(1);
+	    	$customer = $objCustomer->getCustomerByEmailId();*/
+//session_start();
+
+	    	//$_SESSION['cid'] = $customer['id'];
+	    	//$_SESSION['cid'] = $_SESSION['id'];
+if(isset($_SESSION['id'])){          
+            echo ('session de client id ='.$_SESSION['id']);
+            require '../entities/cart.php';
+            require '../core/cartC.php';
+            $objCart = new cartC($conn);
+			$objCart->setCid($_SESSION['id']);
+			$cartItems = $objCart->getAllCartItems();
+		}
+  ?>			
 			<div class="cart cart box_1"> 
-				<form action="#" method="post" class="last"> 
-					<input type="hidden" name="cmd" value="_cart" />
-					<input type="hidden" name="display" value="1" />
-					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-				</form>   
+					
+					<button class="w3view-cart" type="submit" name="submit" value="">
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php if(isset($_SESSION['id'])){ echo count($cartItems); } ?></sup></a>
+						 </button>
+						
+				
+              
 			</div>  
 		</div>
 	</div>
@@ -203,16 +236,16 @@ session_start();
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="index.php" class="act">Home</a></li>	
+						<li><a href="index.html" class="act">Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
-							<ul class="dropdown-menu multi-column columns-3">
+							<a href="produit.php"  >Products <b ></b></a>
+<?php  ?>							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="col-sm-3">
 										<ul class="multi-column-dropdown">
 											<h6>Mobiles</h6>
-											<li><a href="products.html">Mobile Phones</a></li>
+											<li><a href="produit.php">Mobile Phones</a></li>
 											<li><a href="products.html">Mp3 Players <span>New</span></a></li> 
 											<li><a href="products.html">Popular Models</a></li>
 											<li><a href="products.html">All Tablets<span>New</span></a></li>
@@ -239,7 +272,7 @@ session_start();
 									<div class="col-sm-4">
 										<div class="w3ls_products_pos">
 											<h4>30%<i>Off/-</i></h4>
-											<img src="images/1.jpg" alt=" " class="img-responsive" />
+											<img src="images/4.jpg" alt=" " class="img-responsive" />
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -250,11 +283,14 @@ session_start();
 						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="icons.html">Web Icons</a></li>
-								<li><a href="codes.html">Short Codes</a></li>    
+								<li><a href="codes.html">Short Codes</a></li>     
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
-						<li><a href="profile.php">Profile</a></li> 
+<?php if(isset($_SESSION['id'])){?>						
+						<li><a href="profile.php">Profile</a></li>						
+					    <li><a href="historique.php">historique achats</a></li>
+<?php } ?>
 					</ul>
 				</div>
 			</nav>
@@ -332,7 +368,7 @@ session_start();
 									</div> 
 									<h5><a href="single.html">Mobile Phone1</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND380</span> <i class="item_price">TND350</i></p>
+										<p><span>$380</span> <i class="item_price">$350</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -362,7 +398,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Mobile Phone2</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND330</span> <i class="item_price">TND302</i></p>
+										<p><span>$330</span> <i class="item_price">$302</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -392,7 +428,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Mobile Phone3</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND250</span> <i class="item_price">TND245</i></p>
+										<p><span>$250</span> <i class="item_price">$245</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -426,7 +462,7 @@ session_start();
 										</div>
 									</div>
 									<h5><a href="single.html">Speakers</a></h5>
-										<p><span>TND320</span> <i class="item_price">TND250</i></p>
+										<p><span>$320</span> <i class="item_price">$250</i></p>
 									<div class="simpleCart_shelfItem">
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
@@ -457,7 +493,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Headphones</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TNDTND180</span> <i class="item_price">TNDTND150</i></p>
+										<p><span>$180</span> <i class="item_price">$150</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -487,7 +523,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Audio Player</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TNDTND220</span> <i class="item_price">TNDTND180</i></p>
+										<p><span>$220</span> <i class="item_price">$180</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -522,7 +558,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Laptop</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TNDTND880</span> <i class="item_price">TNDTND850</i></p>
+										<p><span>$880</span> <i class="item_price">$850</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -552,7 +588,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Notebook</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TNDTND290</span> <i class="item_price">TNDTND280</i></p>
+										<p><span>$290</span> <i class="item_price">$280</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -582,7 +618,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Kid's Toy</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TNDTND120</span> <i class="item_price">TNDTND80</i></p>
+										<p><span>$120</span> <i class="item_price">$80</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -617,7 +653,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Refrigerator</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND950</span> <i class="item_price">TND820</i></p>
+										<p><span>$950</span> <i class="item_price">$820</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -647,7 +683,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">LED Tv</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND700</span> <i class="item_price">TND680</i></p>
+										<p><span>$700</span> <i class="item_price">$680</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -677,7 +713,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Washing Machine</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND520</span> <i class="item_price">TND510</i></p>
+										<p><span>$520</span> <i class="item_price">$510</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -712,7 +748,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Grinder</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND460</span> <i class="item_price">TND450</i></p>
+										<p><span>$460</span> <i class="item_price">$450</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -742,7 +778,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Water Purifier</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>TND390</span> <i class="item_price">TND350</i></p>
+										<p><span>$390</span> <i class="item_price">$350</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -772,7 +808,7 @@ session_start();
 									</div>
 									<h5><a href="single.html">Coffee Maker</a></h5>
 									<div class="simpleCart_shelfItem">
-										<p><span>250</span> <i class="item_price">TND220</i></p>
+										<p><span>$250</span> <i class="item_price">$220</i></p>
 										<form action="#" method="post">
 											<input type="hidden" name="cmd" value="_cart" />
 											<input type="hidden" name="add" value="1" /> 
@@ -1308,18 +1344,56 @@ session_start();
 	</div>
 	<!-- //special-deals -->
 	<!-- new-products -->
-	<div class="new-products">
+	<div class="new-products" >
 		<div class="container">
+	
 			<h3>New Products</h3>
+	<div class="col-md-10 col-md-offset-1">
+				<div class="alert alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
+					<div id="result"></div>
+				</div>
+				<center><img src="images/loader.gif" id="loader"></center>
+			</div>
+
 			<div class="agileinfo_new_products_grids">
+
+<?php
+
+
+include"../config.php";	
+
+require "../entities/produit.php";
+require "../core/produitC.php";
+		    	$objproduit = new produitC($conn);
+		    	$produits = $objproduit->getAllproduits();
+
+/////////////////////////
+
+///////////////////
+foreach ($produits as $key => $produit) {
+?>
+<?php  
+
+$promid=$produit['id'];
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = -1;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
+?>				
 				<div class="col-md-3 agileinfo_new_products_grid">
 					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
 						<div class="hs-wrapper hs-wrapper1">
-							<img src="images/25.jpg" alt=" " class="img-responsive" />
-							<img src="images/23.jpg" alt=" " class="img-responsive" />
-							<img src="images/24.jpg" alt=" " class="img-responsive" />
-							<img src="images/22.jpg" alt=" " class="img-responsive" />
-							<img src="images/26.jpg" alt=" " class="img-responsive" /> 
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
+							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
 							<div class="w3_hs_bottom w3_hs_bottom_sub">
 								<ul>
 									<li>
@@ -1328,106 +1402,46 @@ session_start();
 								</ul>
 							</div>
 						</div>
-						<h5><a href="single.html">Laptops</a></h5>
+
+						<h5><a href="single.html"><?php echo $produit['nom'];  ?> </a></h5>
+											
 						<div class="simpleCart_shelfItem">
-							<p><span>$520</span> <i class="item_price">$500</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Red Laptop"> 
-								<input type="hidden" name="amount" value="500.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
+<?php if($prix!=-1)  {?> 
+ <p><span><?php echo number_format($produit['prix'],2)  ?> TND</span> <i class="item_price">
+ 	<?php echo number_format($produit['prix']-($produit['prix']*($prix/100)),2);  ?>  TND</i></p>
+ <?php } else { ?>
+ <p><i class="item_price"> <?php echo number_format($produit['prix'],2)  ?> TND</i></p>
+<?php } ?> 	
+                        <?php  if(isset($_SESSION['id'])){
+		        				$disButton = "";
+		        				if( array_search($produit['id'], array_column($cartItems, 'pid')) !==false ) {
+		        					$disButton = "disabled";
+		        				}
+		        			 ?>
+<button id="cartBtn_<?=$produit['id'];?>"  <?php echo $disButton; ?>  role="button" class="w3ls-cart" 
+	onclick="addToCart(<?php echo $produit['id']; ?>,this.id)" >Add to cart</button>
+<?php } ?>
+<?php if(!isset($_SESSION['id'])){ ?>
+<button   role="button" class="w3ls-cart" 
+	onclick=myfunction();>Add to cart</button>
+<script>
+function myfunction() {
+  alert("you must log in to put in cart ");
+  $('#myModal88').modal('show');
+
+}
+</script>	
+<?php } ?>	
+
 						</div>
+					
 					</div>
+					
 				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="images/27.jpg" alt=" " class="img-responsive" />
-							<img src="images/28.jpg" alt=" " class="img-responsive" />
-							<img src="images/29.jpg" alt=" " class="img-responsive" />
-							<img src="images/30.jpg" alt=" " class="img-responsive" />
-							<img src="images/31.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="single.html">Black Phone</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$380</span> <i class="item_price">$370</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Black Phone"> 
-								<input type="hidden" name="amount" value="370.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="images/34.jpg" alt=" " class="img-responsive" />
-							<img src="images/33.jpg" alt=" " class="img-responsive" />
-							<img src="images/32.jpg" alt=" " class="img-responsive" />
-							<img src="images/35.jpg" alt=" " class="img-responsive" />
-							<img src="images/36.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="single.html">Kids Toy</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$150</span> <i class="item_price">$100</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Kids Toy"> 
-								<input type="hidden" name="amount" value="100.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>  
-					</div>
-				</div>
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="images/37.jpg" alt=" " class="img-responsive" />
-							<img src="images/38.jpg" alt=" " class="img-responsive" />
-							<img src="images/39.jpg" alt=" " class="img-responsive" />
-							<img src="images/40.jpg" alt=" " class="img-responsive" />
-							<img src="images/41.jpg" alt=" " class="img-responsive" /> 
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<h5><a href="single.html">Induction Stove</a></h5>
-						<div class="simpleCart_shelfItem">
-							<p><span>$280</span> <i class="item_price">$250</i></p>
-							<form action="#" method="post">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="add" value="1"> 
-								<input type="hidden" name="w3ls_item" value="Induction Stove"> 
-								<input type="hidden" name="amount" value="250.00">   
-								<button type="submit" class="w3ls-cart">Add to cart</button>
-							</form>
-						</div>
-					</div>
-				</div>
+				
+				<?php  } ?>	
+
+				
 				<div class="clearfix"> </div>
 			</div>
 		</div>
@@ -1540,7 +1554,7 @@ session_start();
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
-						<li><a href="index.php">Home</a></li>
+						<li><a href="index.html">Home</a></li>
 						<li><a href="products.html">Today's Deals</a></li>
 					</ul>
 					<h4>Follow Us</h4>
@@ -1568,22 +1582,35 @@ session_start();
 		</div>
 	</div>
 	<!-- //footer --> 
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-        w3ls.render();
 
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
-
-        	if (this.subtotal() > 0) {
-        		items = this.items();
-
-        		for (i = 0, len = items.length; i < len; i++) { 
-        		}
-        	}
-        });
-    </script>  
-	<!-- //cart-js -->   
 </body>
+<script type="text/javascript">
+	function addToCart(wId,btnId) {
+		
+		$('#loader').show();
+		$.ajax({
+			url: "action.php",
+			data: "wId=" + wId + "&action=add",
+			method: "post"
+		}).done(function(response) {
+           //alert('dsfdsfdsfdsf');
+			var data = JSON.parse(response);
+			//alert('raja3 donnee data cb');
+			$('#loader').hide();
+			$('.alert').show();
+			if(data.status == 0) {
+				$('.alert').addClass('alert-danger');
+				$('#result').html(data.msg);
+			} else {
+				$('.alert').addClass('alert-success');
+				$('#result').html(data.msg);
+				$('#'+btnId).prop('disabled',true);
+				$('#itemCount').text( parseInt( $('#itemCount').text() ) + 1);
+			}
+			
+		})
+	}
+
+</script>
+
 </html>

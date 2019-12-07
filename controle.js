@@ -1,74 +1,71 @@
-function controle()
+function ValidateEmail(email)
 {
-	if(document.getElementById('nom').value.length<1)
-		 {
-		 	alert('le champs Nom est obligatoire');
-		 }
-}		
-function controle1()
-{
-	if(document.getElementById('prenom').value.length!<1)
-		 {
-		 	alert('le champs Prenom est obligatoire');
-		 }	
-}
-	
-function controle2()
-{
-	if(document.getElementById('username').value.length!<1)
-		 {
-		 	alert('le champs Username est obligatoire');
-		 }
-}	
-	
-function controle3()
-{
-	if(document.getElementById('adresse').value.length!<1)
-		 {
-		 	alert('le champs Adresse est obligatoire');
-		 }
-}	
-	
-function controle4()
-{
-	if(document.getElementById('tel').value.length!<1)
-		 {
-		 	alert('le champs Telephone est obligatoire');
-		 }
-}	
-	
-function controle5()
-{
-	if(document.getElementById('email').value.length!<1)
-		 {
-		 	alert('le champs E-mail est obligatoire');
-		 }
-}	
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.email.value))
+  {
+    return (true)
+  }
 
-function controle6()
-{
-	if(document.getElementById('password').value.length!<6)
-		 {
-		 	alert('le champs mot de passe est obligatoire');
-		 }
-}	
-	
-function controle7
-{
-	if (document.getElementById('password1')!= document.getElementById('password1')) 
-		{
-			alert('Veuillez choisir le meme mot de passe');
-		}
-}	
-	
-		
+    return (false)
+}
 function verif()
 {
-	controle();
-	controle2();
-	controle3();
-	controle4();
-	controle5();
-	controle6();
-	controle7();
+	if(document.getElementById('nom').value=='')
+		 {
+		 	alert('le champs Nom est obligatoire');
+      return false;
+		 }
+		 else if(document.getElementById('prenom').value=='')
+		 {
+		 	alert('le champs Prenom est obligatoire');
+      return false;
+		 }
+		 else if(document.getElementById('username').value=='')
+		 {
+		 	alert('le champs Username est obligatoire');
+      return false;
+		 }
+		else if(document.getElementById('adresse').value=='')
+		 {
+		 	alert('le champs Adresse est obligatoire');
+      return false;
+		 }
+		else if(document.getElementById('tel').value=='')
+		 {
+		 	alert('le champs Telephone est obligatoire');
+      return false;
+		 }
+     else if(document.getElementById('email').value=='')
+ 		 {
+ 		 	alert('le champs 3asba est obligatoire');
+      return false;
+ 		 }
+		else if(document.getElementById('password').value=='')
+		 {
+		 	alert('le champs mot de passe est obligatoire');
+      return false;
+		 }
+		 else if (document.getElementById('password1').value!= document.getElementById('password').value)
+		{
+			alert('Veuillez choisir le meme mot de passe');
+      return false;
+		}
+    else if (ValidateEmail(email)===false)
+    {
+
+      alert('Veuillez choisir une adresse mail valide');
+      return false;
+    }
+}
+function verif1() 
+{
+  if(document.getElementById('username').value=='')
+		 {
+		 	alert('le champs username est obligatoire');
+      return false;
+		 }
+		 else if(document.getElementById('password').value=='')
+		 {
+		 	alert('le champs mot de passe est obligatoire');
+      return false;
+		 }
 }
