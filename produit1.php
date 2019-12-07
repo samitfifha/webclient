@@ -241,7 +241,7 @@ if(isset($_SESSION['id'])){
 						<li><a href="index.php">Home</a></li>	
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle act" data-toggle="dropdown" >Products <b class="caret"></b></a>
+							<a href="produit.php" class="act"  >Products <b ></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="col-sm-3">
@@ -529,9 +529,9 @@ foreach($idPromo as $nn){
 }
 
     ?>					
-						<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+						<div class="col-md-4 agileinfo_new_products_grid">
 							<div  class="agile_ecommerce_tab_left mobiles_grid">
-								<div class="hs-wrapper hs-wrapper2">
+								<div class="hs-wrapper hs-wrapper1">
 									<img src="../back-end/<?php echo $row->image; ?>" width="200" height="300"/>
 									<div class="w3_hs_bottom w3_hs_bottom_sub1">
 										<ul>
