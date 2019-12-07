@@ -2,7 +2,6 @@
 	require_once('../db/DbConnect.php');
     $db   = new DbConnect();
     $conn = $db->connect();
-include"../config.php";	
 
             require '../entities/produit_trans.php';
             require '../core/produit_transC.php';
@@ -29,7 +28,7 @@ include"../config.php";
 		 			<th>Amount</th>
 		 			<th>bought By</th>
 		 			<th>purchase  Date</th>
-		 			<th><a href="historique.php">go back</a></th>
+		 			<th><a href="panier_commande.php">go back</a></th>
 		 		</tr>
 		 	</thead>
 		 	<tbody>
@@ -38,21 +37,9 @@ include"../config.php";
 		 		?>
 		 		<tr>
 		 			<td><?= $produit_trans['id']; ?></td>
-		 			<td><img width="60" height="30" src="../back-end/<?= $produit_trans['image']; ?>"> <?= $produit_trans['nom']; ?></td>
+		 			<td><img width="60" height="30" src="images/<?= $produit_trans['image']; ?>"> <?= $produit_trans['nom']; ?></td>
 		 			<td><?= $produit_trans['quantity']; ?></td>
-<?php
-$promid=$produit_trans['id'];
-$sql="SELECT * from promotion where idproduit =$promid ";
-$db = config::getConnexion();
-$idPromo=$db->query($sql);
-$prix = 0;
-foreach($idPromo as $nn){
- $prix = $nn['pourcentage'];
- $date_debut=$nn['datedebut'];
- $date_fin=$nn['datefin'];
-}
- ?> 
-		<td><?= ($produit_trans['quantity'] * ($produit_trans['prix']-($produit_trans['prix']*($prix/100)))); ?></td>
+		 			<td><?= ($produit_trans['quantity'] * $produit_trans['prix']); ?></td>
 		 			<td><?= $produit_trans['nom']; ?></td>
 		 			<td><?= $produit_trans['createdOn']; ?></td>
 		 		</tr>

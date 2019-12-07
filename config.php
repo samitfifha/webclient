@@ -1,17 +1,12 @@
 <?php
-  class config {
-    private static $instance = NULL;
 
-    public static function getConnexion() {
-      if (!isset(self::$instance)) {
-		try{
-        self::$instance = new PDO('mysql:host=localhost;dbname=webb', 'root', '');
-		self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}catch(Exception $e){
-            die('Erreur: '.$e->getMessage());
-		}
-      }
-      return self::$instance;
-    }
-  }
-?>
+$host = "localhost"; /* Host name */
+$user = "root"; /* User */
+$password = ""; /* Password */
+$dbname = "webb"; /* Database name */
+
+$con = mysqli_connect($host, $user, $password,$dbname);
+// Check connection
+if (!$con) {
+ die("Connection failed: " . mysqli_connect_error());
+}

@@ -1,9 +1,9 @@
+
 <?php
-include 'C:/wamp64/www/web/entities/client.php';
-include 'C:/wamp64/www/web/core/clientC.php';
-$client1C=new clientC();
-$listeclient=$client1C->afficherclient();
 session_start();
+?>
+<?php 
+include "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +17,9 @@ session_start();
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
+    <title>gesion panier-commande</title>
     <link rel="icon" href="images/icone.ico">
-    <title>Gerer Clients</title>
+
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -40,9 +41,19 @@ session_start();
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+<link href='style.css' rel='stylesheet' type='text/css'>
+        <script src='jquery-3.0.0.js' type='text/javascript'></script>
+        <script src='script.js' type='text/javascript'></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <link href='style.css' rel='stylesheet' type='text/css'>
+        <script src='script.js' type='text/javascript'></script>
 </head>
-
+<style type="text/css">
+   .au-btn-filter:hover {
+    background: black;
+    color: white;
+} 
+</style>
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -82,11 +93,26 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
                         <li>
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Gere Clients</a>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
+                        <li>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Tables</a>
+                        </li>
+                        <li>
+                            <a href="panier_commande.php">
+                                <i class="fas fa-table"></i>panier_commande</a>
+                        </li>
+                                                 <li>
+<a href="promotion.php">
+<i class="far fa-check-square"></i>Promotion</a>
+</li>
+<li>
+<a href="fidelite.php">
+<i class="fas fa-calendar-alt"></i>Fidelite</a>
+</li>
                         <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
@@ -114,7 +140,7 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
+                        
                     </ul>
                 </div>
             </nav>
@@ -124,7 +150,7 @@ session_start();
 <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="index.php">
+                <a href="#">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                 </a>
             </div>
@@ -134,53 +160,56 @@ session_start();
                         <li class="has-sub">
                             <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-
+                           
                         </li>
 
 
-                        <li class="active">
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Gerer clients</a>
-                        </li>
-<li >
+                        <li>
+                          <a href="table.php">
+                            <i class="fas fa-table"></i>Gerer Clients</a>
+                        </li> 
+
+  <li >
                             <a href="produit.php">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
+
+
+<li>
+
+ <a href="listeprod.php">
                                 <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
 
-
-<li>
+  <li>
                             <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
+                                <i class="fas fa-chart-bar"></i>Add Categorie</a>
+                      
                         </li>
 
 
 
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
+<li  >
+                         <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Cat</a>
                         </li>
-                         <li>
-                            <a href="panier_commande.php">
+ 
+                         <li class="active">
+                            <a href="panier_commande.html">
                                 <i class="fas fa-table"></i>panier_commande</a>
                         </li>
-                         <li>
+                                                                        <li>
 <a href="promotion.php">
 <i class="far fa-check-square"></i>Promotion</a>
 </li>
 <li>
 <a href="fidelite.php">
 <i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>   
+</li>
                         <li >
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
@@ -208,7 +237,7 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
+                        
                     </ul>
                 </nav>
             </div>
@@ -356,11 +385,11 @@ session_start();
                                                         <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
-                                                <div class="content">
+                                                 <div class="content">
                                                     <h5 class="name">
                                                         <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
                                                     </h5>
-                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                    <span class="email"><?php echo ($_SESSION['email']);?></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -393,92 +422,151 @@ session_start();
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-9">
+******************************************  
+<h4>triee par :</h4>
+<form action="" method="GET" >          
+<table>
+<tr>
+<td><input type="submit" name="bouton" class="au-btn-filter" value="prixD"><i class=" fa fa-arrow-down" type="submit" name="bouton" value="prixD" ></i> </td>
+<td><input type="submit" name="bouton" class="au-btn-filter" value="prixA"><i class=" fa fa-arrow-up" type="submit" name="bouton" value="prixD" ></i></td>
+</tr>
+<tr>
+<td><input type="submit" name="bouton" class="au-btn-filter" value="anneeD"><i class=" fa fa-arrow-down" type="submit" name="bouton" value="prixD" ></i> </td>
+<td><input type="submit" name="bouton" class="au-btn-filter" value="anneeA"><i class=" fa fa-arrow-up" type="submit" name="bouton" value="prixD" ></i></td>
+</tr>    
+</table>
+</form>
+*********************************************
+<form method="POST" action=""> 
+     Rechercher une commande : <input type="text" name="recherche">
+     <input type="submit" value="search"> 
+     </form>
+**********************************************
+                            <div class="row" id="HTMLtoPDF">
+                                <h2 class="title-1 m-b-25" style="margin-left: 41%">commandes </h2> 
+                                <div class="table-responsive table--no-card m-b-40">
 
-                            </div>
-                            <div class="col-lg-3">
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">User Data</h3>
-
-                                </div>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
+                                    <table class="table table-borderless table-striped table-earning">
                                         <thead>
+
                                             <tr>
-                                                <th>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <th>ID - Nom Prenom</th>
-                                                <th>email</th>
-                                                <th>Username</th>
-                                                <th>date</th>
-                                                <th>adresse</th>
-                                                <th>Telephone</th>
-                                                <th></th>
+                                                <th>order ID </th>
+                                                <th>client ID</th>
+                                                <th>quantity</th>
+                                                <th class="text-right">total price</th>
+                                                <th class="text-right">order status</th>
+                                                <th class="text-right">created ON</th>
+                                                <th class="text-right">delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?PHP
-                                                foreach($listeclient as $row){
-                                            ?>
-                                            <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
+                                          <?php
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
+require "../entities/transaction.php";
+require "../core/transactionC.php";
+                $objcommandes = new transactionC($conn);
+
+$colTab1 = ['prixD'];
+$colTab2 =['anneeD'];
+$colTab3 = ['prixA'];
+$colTab4 =['anneeA'];
+/////////////////////////////////////
+// function to connect and execute the query
+function filterTable($query)
+{
+    $connect = mysqli_connect("localhost", "root", "", "webb");
+    $filter_Result = mysqli_query($connect, $query);
+    return $filter_Result;
+}
+
+if(isset($_POST['recherche']))
+{
+    $valueToSearch = $_POST['recherche'];
+    // search in all table columns
+    // using concat mysql function
+    $query = "SELECT * FROM `commandes` WHERE CONCAT(`id`, `cid`, `quantity`, `amount`) LIKE '%".$valueToSearch."%'";
+    $search_result = filterTable($query);
+     while($commande = mysqli_fetch_array($search_result)):
+?>
+<tr>
+<td><a href="reportDetails.php?tid=<?= $commande['id']; ?>"><?php echo $commande['id'];  ?></a></td>
+                                                <td><?php echo $commande['cid'];  ?></td>
+                                                <td><?php echo $commande['quantity'];  ?> </td>
+                                                <td class="text-right"><?php echo $commande['amount'];  ?>TND</td>
+                                                <td class="text-right"><?php echo $commande['orderStatus'];  ?>   
                                                 </td>
-                                               <form action="supprimerclient.php" method="Post">
-                                                <td><?php echo $row['id'] ." - ". $row['prenom']." ".$row['nom']; ?></td>
-                                                <td>
-                                                    <span class="block-email"><?php echo $row['email']?></span>
-                                                </td>
-                                                <td class="desc"><?php echo $row['username']?></td>
-                                                <td><?php echo $row['date_crea']?></td>
-                                                <td>
-                                                    <span class="status--process"><?php echo $row['adresse']?></span>
-                                                </td>
-                                                <td><?php echo $row['tel']?></td>
-                                                <td>
-                                                    <input type="text" value="<?php echo $row['id'] ?>" hidden name="idsup">
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete"  >
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                    </div>
-                                                    </form>
-                                                </td>
+                                                <td class="text-right"><?php echo $commande['createdOn'];  ?>TND</td>
+                                                <td class="text-right"  class="col-sm-1 col-md-1">
+             <span class='delete' id='del_<?php echo $commande['id']; ?>'>Delete</span></td>                                     
                                             </tr>
+ <?php endwhile; } ?>
+
+ <?php    
+ if (!isset($_POST['recherche'])) {
+     
+if (isset($_GET['bouton']) AND in_array($_GET['bouton'], $colTab1))
+      {
+         $commandes = $objcommandes->getAlltransactionsAD();
+      }
+else if (isset($_GET['bouton']) AND in_array($_GET['bouton'], $colTab2))
+      {
+         $commandes = $objcommandes->getAlltransactionsanD();
+      }
+elseif (isset($_GET['bouton']) AND in_array($_GET['bouton'], $colTab3))
+      {
+         $commandes = $objcommandes->getAlltransactionsAA();
+      }
+else if (isset($_GET['bouton']) AND in_array($_GET['bouton'], $colTab4))
+      {
+         $commandes = $objcommandes->getAlltransactionsanA();
+      }  
+                  
+      else
+      {
+
+         $commandes = $objcommandes->getAlltransactions();
+      }
+               
+
+foreach ($commandes as $key => $commande) {
+
+?>
+                                            <tr>
+<td><a href="reportDetails.php?tid=<?= $commande['id']; ?>"><?php echo $commande['id'];  ?></a></td>
+                                                <td><?php echo $commande['cid'];  ?></td>
+                                                <td><?php echo $commande['quantity'];  ?> </td>
+                                                <td class="text-right"><?php echo $commande['amount'];  ?>TND</td>
+                                                <td class="text-right"><?php echo $commande['orderStatus'];  ?>   
+                                                </td>
+                                                <td class="text-right"><?php echo $commande['createdOn'];  ?>TND</td>
+                                                <td class="text-right"  class="col-sm-1 col-md-1">
+             <span class='delete' id='del_<?php echo $commande['id']; ?>'>Delete</span></td>                                     
+                                            </tr>
+                                        <?php } }  ?>
+
+
+   
+
+
+
+ 
+
                                         </tbody>
-                                        <?php  }?>
                                     </table>
+                                    
                                 </div>
-                                <!-- END DATA TABLE -->
-                            </div>
+
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2019 IDEART. All rights reserved. .</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- here we call the function that makes PDF -->
+ <button class="au-btn-filter"> <a href="#" onclick="HTMLtoPDF()">Download PDF</a> </button><br>
+
+
+
+*********************************************
+             </div>
         </div>
 
     </div>
@@ -506,9 +594,11 @@ session_start();
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-
+    <!-- these js files are used for making PDF -->
+    <script src="js/jspdf.js"></script>
+    <script src="js/jquery-2.1.3.js"></script>
+    <script src="js/pdfFromHTML.js"></script>
 </body>
 
 </html>
-
 <!-- end document-->

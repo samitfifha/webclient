@@ -1,4 +1,5 @@
 <?php  session_start();  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Add Product</title>
+    <title>Add Categorie</title>
     <link rel="icon" href="images/icone.ico">
 
 
@@ -62,7 +63,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="index.php">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -81,7 +82,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Dashboard 1</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">Dashboard 2</a>
@@ -156,13 +157,13 @@
                            
                         </li>
 
+
                         <li>
                           <a href="table.php">
                             <i class="fas fa-table"></i>Gerer Clients</a>
                         </li> 
 
-
-  <li class="active has-sub">
+  <li>
                             <a href="produit.php">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
@@ -174,20 +175,15 @@
                                 <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
-
-
-<li>
+                         <li class="active has-sub">
                             <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
+                                <i class="fas fa-chart-bar"></i>Add Categorie</a>
+                      
                         </li>
 
-
-
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
+ <li>
+                            <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Categorie</a>
                         </li>
  <li>
                             <a href="panier_commande.php">
@@ -201,6 +197,8 @@
 <a href="fidelite.php">
 <i class="fas fa-calendar-alt"></i>Fidelite</a>
 </li>
+
+
 
 
                         <li>
@@ -450,12 +448,12 @@
 
                 <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
                     <!-- BEGIN: Page heading-->
-                   <script type="text/javascript" src="controle.js"></script>
-   <form name="myform"  action="ajouter.php" onsubmit="return validate()"  method="POST" enctype="multipart/form-data"  >
+                  
+   <form name="myform"  action="ajouterc.php" onsubmit="return validate()"  method="POST"  >
                     <div>
                         
                             <div class="card-body">
-                                <h5 class="box-title text-primary">AJOUTER UN PRODUIT</h5>
+                                <h5 class="box-title text-primary">AJOUTER CATEGORIE</h5>
                                 <div class="row" style="margin-top:-2%;">
                                     <div class="col-md-4" style="margin-top:30%;">
                                                                       
@@ -467,25 +465,17 @@
                                     <div class="card-body">
                                        
                                        <div>
-                                        ID Produit:
+                                        ID Categorie:
                                             <div class="md-form mb-4"><input  name="id" type="text"></div>
 
                                         <div>
-                                        Nom Produit:
+                                        Nom Categorie:
                                             <div class="md-form mb-4"><input  name="nom" type="text"></div>
-                                        Prix Produit:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="prix" type="text"></div>
-                                        Quantité:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="quantite" type="text"></div>
-                                        URL Image:
-                                            <div class="md-form mb-4"><input id="image"  name="image" type="file"></div>
-                                         ID Categorie:
-                                            <div class="md-form mb-4"><input id="id_cat"  name="id_cat" type="text"></div>
-
+                                        
 
 
                             <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="upload" style="margin-left:-34%;"">Soumettre le produit</button><br><br>
+                                <button class="btn btn-primary" type="submit" name="upload" style="margin-left:-34%;"">Soumettre Categorie</button><br><br>
                                 <button class="btn btn-light" type="submit" style="margin-left:-34%;">Annuler l'opération</button>
                             </div>
                                 </div>

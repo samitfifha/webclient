@@ -1,4 +1,22 @@
-<?php  session_start();  ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +30,6 @@
 
     <!-- Title Page-->
     <title>Add Product</title>
-    <link rel="icon" href="images/icone.ico">
-
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -144,26 +160,23 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    <img src="images/icon/logo.jpg" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a href="index.php">
+                            <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                            
                         </li>
 
-                        <li>
-                          <a href="table.php">
-                            <i class="fas fa-table"></i>Gerer Clients</a>
-                        </li> 
+
 
 
   <li class="active has-sub">
-                            <a href="produit.php">
+                            <a href="produit.html">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
@@ -171,36 +184,9 @@
 
  <li>
                             <a href="listeprod.php">
-                                <i class="fas fa-chart-bar"></i>Liste produits</a>
+                                <i class="fas fa-chart-bar"></i>Liste produit</a>
                         </li>
 
-
-
-<li>
-                            <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
-                        </li>
-
-
-
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
-                        </li>
- <li>
-                            <a href="panier_commande.php">
-                                <i class="fas fa-table"></i>panier_commande</a>
-                        </li>
-                         <li>
-<a href="promotion.php">
-<i class="far fa-check-square"></i>Promotion</a>
-</li>
-<li>
-<a href="fidelite.php">
-<i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>
 
 
                         <li>
@@ -374,23 +360,23 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                            <a class="js-acc-btn" href="#">bahaeddine said</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
-                                                <div class="content">
+                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                                        <a href="#">bahaeddine said</a>
                                                     </h5>
-                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                    <span class="email">bahaeddine.said@esprit.tn</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -408,7 +394,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="../logout.php">
+                                                <a href="#">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -443,51 +429,77 @@
 
 
 </head>
+   <HTML>
+<body>
+<?PHP
+include "entites/categorie.php";
+include "core/categoriec.php";
+if (isset($_GET['id'])){
+	$categoriec=new categoriec();
+    $result=$categoriec->recuperercategorie($_GET['id']);
+	foreach($result as $row){
+		$id=$row['id'];
+		$nom=$row['nom'];
+		
+?>
+
 
 <body>
-  
+   <form method="POST" >
         <div class="content-wrapper" >
 
                 <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
                     <!-- BEGIN: Page heading-->
-                   <script type="text/javascript" src="controle.js"></script>
-   <form name="myform"  action="ajouter.php" onsubmit="return validate()"  method="POST" enctype="multipart/form-data"  >
+                 
                     <div>
                         
                             <div class="card-body">
-                                <h5 class="box-title text-primary">AJOUTER UN PRODUIT</h5>
+                                <h5 class="box-title text-primary">MODIFIER CATEGORIE</h5>
                                 <div class="row" style="margin-top:-2%;">
                                     <div class="col-md-4" style="margin-top:30%;">
                                                                       
                                     </div>
-
-                                    
-
                                                                     <div class="col-lg-5">
                                     <div class="card-body">
                                        
                                        <div>
                                         ID Produit:
-                                            <div class="md-form mb-4"><input  name="id" type="text"></div>
+                                            <div class="md-form mb-4"><input  name="id" type="text" value="<?PHP echo $id ?>"    ></div>
 
                                         <div>
                                         Nom Produit:
-                                            <div class="md-form mb-4"><input  name="nom" type="text"></div>
-                                        Prix Produit:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="prix" type="text"></div>
-                                        Quantité:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="quantite" type="text"></div>
-                                        URL Image:
-                                            <div class="md-form mb-4"><input id="image"  name="image" type="file"></div>
-                                         ID Categorie:
-                                            <div class="md-form mb-4"><input id="id_cat"  name="id_cat" type="text"></div>
+                                            <div class="md-form mb-4"><input  name="nom" type="text" value="<?PHP echo $nom ?>"  ></div>
+                                       
 
 
 
                             <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="upload" style="margin-left:-34%;"">Soumettre le produit</button><br><br>
-                                <button class="btn btn-light" type="submit" style="margin-left:-34%;">Annuler l'opération</button>
+                                <button class="btn btn-primary" type="submit" name="modifier" value="modifier" style="margin-left:-34%;">Modifier </button>
+                               <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
                             </div>
+
+
+
+</form>
+</body>
+<?PHP
+	}
+}
+if (isset($_POST['modifier'])){
+	$categorie=new categorie($_POST['id'],$_POST['nom']);
+	$produitc->modifiercategorie($categorie,$_POST['id_ini']);
+  header('Location: listecat.php');
+}
+
+
+?>
+
+</body>
+</HTMl>
+
+
+
+
                                 </div>
 
                         </div>
@@ -495,6 +507,31 @@
                 </div><!-- BEGIN: Footer-->
             </div><!-- END: Content-->
     </div><!-- BEGIN: Search form-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- CORE PLUGINS-->
     <script src="../assets/vendors/jquery/dist/jquery.min.js"></script>
     <script src="../assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

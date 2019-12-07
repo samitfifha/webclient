@@ -1,6 +1,6 @@
 <?PHP
-require_once 'C:/wamp64/www/web/front/entities/client.php';
-require_once 'C:/wamp64/www/web/front/core/clientC.php';
+require_once 'C:/wamp64/www/web/entities/client.php';
+require_once 'C:/wamp64/www/web/core/clientC.php';
 // var_dump($_POST);
 if (isset($_POST['idsup'])) {
 	// echo "1";

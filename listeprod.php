@@ -1,4 +1,17 @@
-<?php  session_start();  ?>
+<?php session_start();
+if(empty($_SESSION['id']))
+{
+
+echo"<script type='text/javascript'>";
+echo"alert('Please LOGIN first');
+window.location.href='../index.php' ;";
+echo "</script>";
+
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,9 +24,8 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Add Product</title>
     <link rel="icon" href="images/icone.ico">
-
+    <title>Add Product</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -62,7 +74,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="index.php">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -81,7 +93,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Dashboard 1</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">Dashboard 2</a>
@@ -150,27 +162,24 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
+                    <li >
                             <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                           
+                            
                         </li>
-
-                        <li>
+                                                <li>
                           <a href="table.php">
                             <i class="fas fa-table"></i>Gerer Clients</a>
                         </li> 
-
-
-  <li class="active has-sub">
+<li >
                             <a href="produit.php">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
+ <li class="active has-sub">
+                            <a  href="listeprod.php">
                                 <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
@@ -189,7 +198,7 @@
                         <a href="categorie.html">
                                 <i class="fas fa-chart-bar"></i>Liste categorie</a>
                         </li>
- <li>
+                         <li>
                             <a href="panier_commande.php">
                                 <i class="fas fa-table"></i>panier_commande</a>
                         </li>
@@ -444,57 +453,85 @@
 
 </head>
 
+
 <body>
-  
-        <div class="content-wrapper" >
-
-                <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
-                    <!-- BEGIN: Page heading-->
-                   <script type="text/javascript" src="controle.js"></script>
-   <form name="myform"  action="ajouter.php" onsubmit="return validate()"  method="POST" enctype="multipart/form-data"  >
-                    <div>
-                        
-                            <div class="card-body">
-                                <h5 class="box-title text-primary">AJOUTER UN PRODUIT</h5>
-                                <div class="row" style="margin-top:-2%;">
-                                    <div class="col-md-4" style="margin-top:30%;">
-                                                                      
-                                    </div>
-
-                                    
-
-                                                                    <div class="col-lg-5">
-                                    <div class="card-body">
-                                       
-                                       <div>
-                                        ID Produit:
-                                            <div class="md-form mb-4"><input  name="id" type="text"></div>
-
-                                        <div>
-                                        Nom Produit:
-                                            <div class="md-form mb-4"><input  name="nom" type="text"></div>
-                                        Prix Produit:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="prix" type="text"></div>
-                                        Quantité:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="quantite" type="text"></div>
-                                        URL Image:
-                                            <div class="md-form mb-4"><input id="image"  name="image" type="file"></div>
-                                         ID Categorie:
-                                            <div class="md-form mb-4"><input id="id_cat"  name="id_cat" type="text"></div>
 
 
 
-                            <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="upload" style="margin-left:-34%;"">Soumettre le produit</button><br><br>
-                                <button class="btn btn-light" type="submit" style="margin-left:-34%;">Annuler l'opération</button>
-                            </div>
-                                </div>
 
-                        </div>
-                    </div><!-- END: Page content-->
-                </div><!-- BEGIN: Footer-->
-            </div><!-- END: Content-->
-    </div><!-- BEGIN: Search form-->
+
+
+
+    <link rel="stylesheet" type="text/css" href="tb.css" />
+
+<?PHP
+include "core/produitc.php";
+$produit1c=new produitc();
+$listeproduits=$produit1c->afficherproduit();
+
+//var_dump($listeEmployes->fetchAll());
+?>
+
+<table border="1">
+<tr>
+<td>id</td>
+<td>nom</td>
+<td>prix</td>
+<td>quantite</td>
+<td>ID_CAT</td>
+<td>IMAGE</td>
+<td>Supprimer</td>
+<td>Modifier</td>
+
+</tr>
+
+<?PHP
+foreach($listeproduits as $row){
+
+    ?>
+    <tr>
+    <td><?PHP echo $row['id']; ?></td>  
+    <td><?PHP echo $row['nom']; ?></td>
+    <td><?PHP echo $row['prix']; ?></td>
+    <td><?PHP echo $row['quantite']; ?></td>
+    <td><?PHP echo $row['id_cat']; ?></td>
+    <td>
+
+        <img src="<?php echo $row ['image']; ?>" width="300" height="180">
+
+              
+
+         </td>
+    
+
+
+
+
+<td><form method="POST" action="supprimer.php">
+    <input type="submit" name="supprimer" value="supprimer">
+    <input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
+    </form>
+    </td>
+    <td><a href="modifier.php?id=<?PHP echo $row['id']; ?>">
+    <input type="submit" name="modifier" value="modifier"></a></td>
+    </tr>
+    <?PHP
+
+}
+?>
+</table>
+</body>
+</form>
+
+
+
+
+
+
+</body>
+
+
+   
     <!-- CORE PLUGINS-->
     <script src="../assets/vendors/jquery/dist/jquery.min.js"></script>
     <script src="../assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -503,8 +540,13 @@
     <script src="../assets/vendors/dropzone/dist/min/dropzone.min.js"></script><!-- CORE SCRIPTS-->
     <script src="../assets/js/app.min.js"></script><!-- PAGE LEVEL SCRIPTS-->
 
-</form>
-</body>
+
+
+
+
+
+
+
 
 
 

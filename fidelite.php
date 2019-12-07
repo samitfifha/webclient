@@ -1,10 +1,4 @@
-<?php
-include 'C:/wamp64/www/web/entities/client.php';
-include 'C:/wamp64/www/web/core/clientC.php';
-$client1C=new clientC();
-$listeclient=$client1C->afficherclient();
-session_start();
-?>
+<<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,15 +9,16 @@ session_start();
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+    <link rel="icon" href="images/icone.ico">
 
     <!-- Title Page-->
-    <link rel="icon" href="images/icone.ico">
-    <title>Gerer Clients</title>
+    <title>fidelite</title>
+
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -82,22 +77,25 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
                         <li>
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Gere Clients</a>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
                         <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Tables</a>
                         </li>
+<li>
+<a href="promotion.php">
+<i class="far fa-check-square"></i>Promotion</a>
+</li>
+<li>
+<a href="fidelite.php">
+<i class="fas fa-calendar-alt"></i>Fidelite</a>
+</li>
                         <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                         <li>
                             <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Mailbox</a>
+                                <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -114,17 +112,55 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="button.html">Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">Fontawesome Icon</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">Typography</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </header>
         <!-- END HEADER MOBILE-->
 
-<!-- MENU SIDEBAR-->
+        <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="index.php">
+                <a href="#">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                 </a>
             </div>
@@ -134,40 +170,42 @@ session_start();
                         <li class="has-sub">
                             <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-
+                           
                         </li>
 
 
-                        <li class="active">
-                            <a href="table.php">
-                                <i class="fas fa-table"></i>Gerer clients</a>
-                        </li>
-<li >
+                        <li>
+                          <a href="table.php">
+                            <i class="fas fa-table"></i>Gerer Clients</a>
+                        </li> 
+
+  <li >
                             <a href="produit.php">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
+
+
+<li>
+
+ <a href="listeprod.php">
                                 <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
 
-
-<li>
+  <li>
                             <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
+                                <i class="fas fa-chart-bar"></i>Add Categorie</a>
+                      
                         </li>
 
 
 
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
+<li  >
+                         <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Cat</a>
                         </li>
                          <li>
                             <a href="panier_commande.php">
@@ -177,18 +215,10 @@ session_start();
 <a href="promotion.php">
 <i class="far fa-check-square"></i>Promotion</a>
 </li>
-<li>
+<li class="active">
 <a href="fidelite.php">
 <i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>   
-                        <li >
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
+</li>
                          <li>
                             <a href="map.html">
                                 <i class="fas fa-map-marker-alt"></i>Mailbox</a>
@@ -208,7 +238,7 @@ session_start();
                                 </li>
                             </ul>
                         </li>
-
+                        
                     </ul>
                 </nav>
             </div>
@@ -389,99 +419,160 @@ session_start();
                     </div>
                 </div>
             </header>
-            <!-- END HEADER DESKTOP-->
+            <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-9">
+        
 
-                            </div>
-                            <div class="col-lg-3">
+<br><br><br><br><br><br>
 
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">User Data</h3>
 
-                                </div>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </th>
-                                                <th>ID - Nom Prenom</th>
-                                                <th>email</th>
-                                                <th>Username</th>
-                                                <th>date</th>
-                                                <th>adresse</th>
-                                                <th>Telephone</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?PHP
-                                                foreach($listeclient as $row){
-                                            ?>
-                                            <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                               <form action="supprimerclient.php" method="Post">
-                                                <td><?php echo $row['id'] ." - ". $row['prenom']." ".$row['nom']; ?></td>
-                                                <td>
-                                                    <span class="block-email"><?php echo $row['email']?></span>
-                                                </td>
-                                                <td class="desc"><?php echo $row['username']?></td>
-                                                <td><?php echo $row['date_crea']?></td>
-                                                <td>
-                                                    <span class="status--process"><?php echo $row['adresse']?></span>
-                                                </td>
-                                                <td><?php echo $row['tel']?></td>
-                                                <td>
-                                                    <input type="text" value="<?php echo $row['id'] ?>" hidden name="idsup">
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete"  >
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                    </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <?php  }?>
-                                    </table>
-                                </div>
-                                <!-- END DATA TABLE -->
-                            </div>
-                        </div>
+<form action="ajouterfidelite.php" method="POST">
+    
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2019 IDEART. All rights reserved. .</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<table>
+    
 
-    </div>
+<tr>
+    <td>  <label for="cc-payment" class="control-label mb-1">Reference de la fidelite</label></td>
+    <td>
+       
+                                                <input  name="idf" type="text" class="form-control" aria-required="true" aria-invalid="false" required >
+                                            </td></tr>
+
+
+
+<tr>
+     <td>  <label for="cc-payment" class="control-label mb-1">Le Client </label></td>
+    <td>
+       
+                                                <input  name="idc" type="text" class="form-control" aria-required="true" aria-invalid="false" required >
+                                            </td></tr>
+
+<tr>
+     <td>  <label for="cc-payment" class="control-label mb-1">Les Points </label></td>
+    <td>
+       
+                                                <input  name="pts" type="text" class="form-control" aria-required="true" aria-invalid="false" required >
+                                            </td></tr>
+
+
+
+
+
+    <td></td>
+    <td></td>
+</tr>
+
+<tr>
+
+<td>Ajouter la fidelite</td>
+
+<td> <button  type="submit" class="btn btn-lg btn-info btn-block" value="Ajouter" >Ajouter</td>
+
+<tr>
+    
+</tr>
+
+
+
+
+
+
+</table>
+
+<br><br><br><br>
+
+
+</form>
+
+
+
+    
+
+
+<table border="1">
+    
+
+    <tr>
+        <td>Reference </td>
+        <td>Client</td>
+        <td>Points</td>
+        <td></td>
+ </tr>
+<?php
+require_once "fideliteF.php";
+$pr = new fideliteF();
+$list=$pr->afficherfidelite();
+foreach($list as $row)
+{
+echo'
+
+    <tr>
+    <td>'.$row['ref'].'</td>
+    <td>'.$row['id_client'].'</td>
+    <td>'.$row['point'].'</td>
+    <td>
+    <form action="supprimerfidelite.php" method="POST">
+      <button  type="submit" class="btn btn-lg btn-info btn-block" value="Supprimer" >Supprimer</button>
+      <input type="hidden" name="ref" value="'.$row['ref'].'">
+    </form>
+    <form action="updateF.php" method="POST">
+      <button  type="submit" class="btn btn-lg btn-info btn-block" value="Modifier" >Modifier</button>
+      <input type="hidden" name="ref" value="'.$row['ref'].'">
+    </form>
+    </td>
+
+        
+    </tr>';
+}
+?>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -510,5 +601,4 @@ session_start();
 </body>
 
 </html>
-
 <!-- end document-->

@@ -1,1616 +1,935 @@
-<?php
-session_start();
+<?php session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link rel="icon" href="images/icone.ico">
-<title>High-Tech-Info</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Electronic Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	SmartPhone Compatible web template, free web designs for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-	function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<!-- Custom Theme files -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-<!-- //Custom Theme files -->
-<!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
-<!-- js -->
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<!--<script src="js/jquery.min.js"></script> !-->
-<link rel="stylesheet" href="css/jquery.countdown.css" /> <!-- countdown --> 
-<!-- //js -->  
-<!-- web fonts --> 
-<link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- //web fonts -->  
-<!-- start-smooth-scrolling -->
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
-</script>
-<!-- //end-smooth-scrolling --> 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head> 
-<style type="text/css">
-	.alert, #loader {
-    	display: none;
-    }
-
-    .glyphicon, #itemCount {
-    	font-size: 18px;
-    }
-</style>
-<body>
-		<script type="text/javascript" src="controle.js"></script>
-	<!-- for bootstrap working -->
-	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-	<!-- //for bootstrap working -->
-	<!-- header modal -->
-	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
-		aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Don't Wait, Login now!</h4>
-				</div>
-				<div class="modal-body modal-body-sub">
-					<div class="row">
-						<div class="col-md-8 modal_body_left modal_body_left1" style="border-right: 1px dotted #C2C2C2;padding-right:3em;">
-							<div class="sap_tabs">	
-								<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-									<ul>
-										<li class="resp-tab-item" aria-controls="tab_item-0"><span>Sign in</span></li>
-										<li class="resp-tab-item" aria-controls="tab_item-1"><span>Sign up</span></li>
-									</ul>		
-									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-										<div class="facts">
-											<div class="register">
-												<form action="clientlog.php" method="post">
-													<input name="username" id="username" placeholder="username" type="text" >
-													<input name="password" id="password" placeholder="password" type="password">
-													<div class="sign-up">
-														<input type="submit" value="Sign in" onclick="return verif1()" />
-													</div>
-												</form>
-											</div>
-										</div> 
-									</div>	 
-									<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-										<div class="facts">
-											<div class="register">
-												<form name="myForm" id="myForm" action="ajoutclient.php" method="post">
-													<input placeholder="Nom" name="nom" id="nom" type="text" >
-													<input placeholder="Prenom" name="prenom" id="prenom" type="text" >
-													<input placeholder="Username" name="username" id="username" type="text" >
-													<input placeholder="adresse" name="adresse" id="adresse" type="text" ">
-													<input placeholder="telephone" name="tel" id="tel" type="text" >
-													<input placeholder="Email Address" name="email" id="email" type="text" >
-													<input placeholder="Password" name="password" id="password" type="password" >
-													<input placeholder="Confirm Password" name="password" id="password1" type="password" >
-													<div class="sign-up">
-														<input type="submit" onclick="return verif()" value="Create Account"/>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div> 			        					            	      
-								</div>	
-							</div>
-							<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
-							<script type="text/javascript">
-								$(document).ready(function () {
-									$('#horizontalTab').easyResponsiveTabs({
-										type: 'default', //Types: default, vertical, accordion           
-										width: 'auto', //auto or any width like 600px
-										fit: true   // 100% fit in a container
-									});
-								});
-							</script>
-							<div id="OR" class="hidden-xs">OR</div>
-						</div>
-						<div class="col-md-4 modal_body_right modal_body_right1">
-							<div class="row text-center sign-with">
-								<div class="col-md-12">
-									<h3 class="other-nw">Sign in with</h3>
-								</div>
-								<div class="col-md-12">
-									<ul class="social">
-										<li class="social_facebook"><a href="#" class="entypo-facebook"></a></li>
-										<li class="social_dribbble"><a href="#" class="entypo-dribbble"></a></li>
-										<li class="social_twitter"><a href="#" class="entypo-twitter"></a></li>
-										<li class="social_behance"><a href="#" class="entypo-behance"></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-  <?php if(!isset($_SESSION['id'])){ ?>
-  <script>
-    $('#myModal88').modal('show');
-  </script>
-  <?php } ?>
-	<!-- header modal -->
-	<!-- header -->
-	<div class="header" id="home1">
-		<div class="container">
-
-			<div class="w3l_login">
-    <?php if(!isset($_SESSION['id'])){ ?>
-        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+      <link rel="icon" href="images/icone.ico">
+    <!-- Title Page-->
+    <title>Dashboard High-Tech-Info</title>
+    <link rel="icon" href="images/icone.ico">
 
 
-        <?php } else{
-if ($_SESSION['role']=='admin') {
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    ?>
-    <a href="../back-end/index.php"><span class="glyphicon glyphicon-stats" ></span></a>
-<?php } ?>
-    <a href="clientlog.php?action=out"><span class="glyphicon glyphicon-log-in" ></span></a>
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-  <?php
-  }
-  ?>
-			</div>
-			<div class="w3l_logo">
-<h1><a href="index.php"><center><img src="images/hightech.png"></center><span>Your stores. Your place.</span></a></h1>			</div>
-			<div class="search">
-				<input class="search_box" type="checkbox" id="search_box">
-				<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-				<div class="search_form">
-					<form action="#" method="post">
-						<input type="text" name="Search" placeholder="Search...">
-						<input type="submit" value="Send">
-					</form>
-				</div>
-			</div>
-<?php 
-require_once('../db/DbConnect.php');
-            $db   = new DbConnect();
-            $conn = $db->connect();
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-            require '../entities/customer.php';
-            require '../core/customerC.php';
-	    	/*$objCustomer = new customerC($conn);
-	    	$objCustomer->setEmail($_SESSION['email']);
-	    	//$objCustomer->getCustomerById(1);
-	    	$customer = $objCustomer->getCustomerByEmailId();*/
-//session_start();
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-	    	//$_SESSION['cid'] = $customer['id'];
-	    	//$_SESSION['cid'] = $_SESSION['id'];
-if(isset($_SESSION['id'])){          
-            echo ('session de client id ='.$_SESSION['id']);
-            require '../entities/cart.php';
-            require '../core/cartC.php';
-            $objCart = new cartC($conn);
-			$objCart->setCid($_SESSION['id']);
-			$cartItems = $objCart->getAllCartItems();
-		}
-  ?>			
-			<div class="cart cart box_1"> 
-					
-					<button class="w3view-cart" type="submit" name="submit" value="">
-<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php if(isset($_SESSION['id'])){ echo count($cartItems); } ?></sup></a>
-						 </button>
-						
-				
-              
-			</div>  
-		</div>
-	</div>
-	<!-- //header -->
-	<!-- navigation -->
-	<div class="navigation">
-		<div class="container">
-			<nav class="navbar navbar-default">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header nav_2">
-					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div> 
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-					<ul class="nav navbar-nav">
-						<li><a href="index.html" class="act">Home</a></li>	
-						<!-- Mega Menu -->
-						<li class="dropdown">
-							<a href="produit.php"  >Products <b ></b></a>
-<?php  ?>							<ul class="dropdown-menu multi-column columns-3">
-								<div class="row">
-									<div class="col-sm-3">
-										<ul class="multi-column-dropdown">
-											<h6>Mobiles</h6>
-											<li><a href="produit.php">Mobile Phones</a></li>
-											<li><a href="products.html">Mp3 Players <span>New</span></a></li> 
-											<li><a href="products.html">Popular Models</a></li>
-											<li><a href="products.html">All Tablets<span>New</span></a></li>
-										</ul>
-									</div>
-									<div class="col-sm-3">
-										<ul class="multi-column-dropdown">
-											<h6>Accessories</h6>
-											<li><a href="products1.html">Laptop</a></li>
-											<li><a href="products1.html">Desktop</a></li>
-											<li><a href="products1.html">Wearables <span>New</span></a></li>
-											<li><a href="products1.html"><i>Summer Store</i></a></li>
-										</ul>
-									</div>
-									<div class="col-sm-2">
-										<ul class="multi-column-dropdown">
-											<h6>Home</h6>
-											<li><a href="products2.html">Tv</a></li>
-											<li><a href="products2.html">Camera</a></li>
-											<li><a href="products2.html">AC</a></li>
-											<li><a href="products2.html">Grinders</a></li>
-										</ul>
-									</div>
-									<div class="col-sm-4">
-										<div class="w3ls_products_pos">
-											<h4>30%<i>Off/-</i></h4>
-											<img src="images/4.jpg" alt=" " class="img-responsive" />
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</ul>
-						</li>
-						<li><a href="about.html">About Us</a></li> 
-						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="icons.html">Web Icons</a></li>
-								<li><a href="codes.html">Short Codes</a></li>     
-							</ul>
-						</li>  
-						<li><a href="mail.html">Mail Us</a></li>
-<?php if(isset($_SESSION['id'])){?>						
-						<li><a href="profile.php">Profile</a></li>						
-					    <li><a href="historique.php">historique achats</a></li>
-<?php } ?>
-					</ul>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!-- //navigation -->
-	<!-- banner -->
-	<div class="banner">
-		<div class="container">
-			<h3>Electronic Store, <span>Special Offers</span></h3>
-		</div>
-	</div>
-	<!-- //banner --> 
-	<!-- banner-bottom -->
-	<div class="banner-bottom">
-		<div class="container">
-			<div class="col-md-5 wthree_banner_bottom_left">
-				<div class="video-img">
-					<a class="play-icon popup-with-zoom-anim" href="#small-dialog">
-						<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
-					</a>
-				</div> 
-					<!-- pop-up-box -->     
-					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-					<!--//pop-up-box -->
-					<div id="small-dialog" class="mfp-hide">
-						<iframe src="https://www.youtube.com/embed/ZQa6GUVnbNM"></iframe>
-					</div>
-					<script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-					</script>
-			</div>
-			<div class="col-md-7 wthree_banner_bottom_right">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">Mobiles</a></li>
-						<li role="presentation"><a href="#audio" role="tab" id="audio-tab" data-toggle="tab" aria-controls="audio">Audio</a></li>
-						<li role="presentation"><a href="#video" role="tab" id="video-tab" data-toggle="tab" aria-controls="video">Computer</a></li>
-						<li role="presentation"><a href="#tv" role="tab" id="tv-tab" data-toggle="tab" aria-controls="tv">Household</a></li>
-						<li role="presentation"><a href="#kitchen" role="tab" id="kitchen-tab" data-toggle="tab" aria-controls="kitchen">Kitchen</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/3.jpg" alt=" " class="img-responsive" />
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/5.jpg" alt=" " class="img-responsive" />
-										<img src="images/6.jpg" alt=" " class="img-responsive" />
-										<img src="images/7.jpg" alt=" " class="img-responsive" />
-										<img src="images/3.jpg" alt=" " class="img-responsive" />
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/5.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div> 
-									<h5><a href="single.html">Mobile Phone1</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$380</span> <i class="item_price">$350</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone1" /> 
-											<input type="hidden" name="amount" value="350.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>  
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/5.jpg" alt=" " class="img-responsive" />
-										<img src="images/6.jpg" alt=" " class="img-responsive" />
-										<img src="images/7.jpg" alt=" " class="img-responsive" />
-										<img src="images/3.jpg" alt=" " class="img-responsive" />
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/5.jpg" alt=" " class="img-responsive" />
-										<img src="images/6.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Mobile Phone2</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$330</span> <i class="item_price">$302</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone2" /> 
-											<input type="hidden" name="amount" value="302.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/7.jpg" alt=" " class="img-responsive" />
-										<img src="images/6.jpg" alt=" " class="img-responsive" />
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/3.jpg" alt=" " class="img-responsive" />
-										<img src="images/5.jpg" alt=" " class="img-responsive" />
-										<img src="images/7.jpg" alt=" " class="img-responsive" />
-										<img src="images/4.jpg" alt=" " class="img-responsive" />
-										<img src="images/6.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Mobile Phone3</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$250</span> <i class="item_price">$245</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Mobile Phone3" /> 
-											<input type="hidden" name="amount" value="245.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="audio" aria-labelledby="audio-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Speakers</a></h5>
-										<p><span>$320</span> <i class="item_price">$250</i></p>
-									<div class="simpleCart_shelfItem">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Speakers" /> 
-											<input type="hidden" name="amount" value="250.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Headphones</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$180</span> <i class="item_price">$150</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Headphones" /> 
-											<input type="hidden" name="amount" value="150.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<img src="images/10.jpg" alt=" " class="img-responsive" />
-										<img src="images/8.jpg" alt=" " class="img-responsive" />
-										<img src="images/9.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Audio Player</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$220</span> <i class="item_price">$180</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Audio Player" /> 
-											<input type="hidden" name="amount" value="180.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="video" aria-labelledby="video-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Laptop</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$880</span> <i class="item_price">$850</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Laptop" /> 
-											<input type="hidden" name="amount" value="850.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Notebook</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$290</span> <i class="item_price">$280</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Notebook" /> 
-											<input type="hidden" name="amount" value="280.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<img src="images/13.jpg" alt=" " class="img-responsive" />
-										<img src="images/11.jpg" alt=" " class="img-responsive" />
-										<img src="images/12.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Kid's Toy</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$120</span> <i class="item_price">$80</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Kid's Toy" /> 
-											<input type="hidden" name="amount" value="80.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="tv" aria-labelledby="tv-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Refrigerator</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$950</span> <i class="item_price">$820</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Refrigerator" /> 
-											<input type="hidden" name="amount" value="820.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">LED Tv</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$700</span> <i class="item_price">$680</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="LED Tv"/> 
-											<input type="hidden" name="amount" value="680.00"/>   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<img src="images/16.jpg" alt=" " class="img-responsive" />
-										<img src="images/14.jpg" alt=" " class="img-responsive" />
-										<img src="images/15.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Washing Machine</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$520</span> <i class="item_price">$510</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Washing Machine" /> 
-											<input type="hidden" name="amount" value="510.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="kitchen" aria-labelledby="kitchen-tab">
-							<div class="agile_ecommerce_tabs">
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Grinder</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$460</span> <i class="item_price">$450</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Grinder" /> 
-											<input type="hidden" name="amount" value="450.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Water Purifier</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$390</span> <i class="item_price">$350</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Water Purifier" /> 
-											<input type="hidden" name="amount" value="350.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-4 agile_ecommerce_tab_left">
-									<div class="hs-wrapper">
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<img src="images/19.jpg" alt=" " class="img-responsive" />
-										<img src="images/17.jpg" alt=" " class="img-responsive" />
-										<img src="images/18.jpg" alt=" " class="img-responsive" />
-										<div class="w3_hs_bottom">
-											<ul>
-												<li>
-													<a href="#" data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<h5><a href="single.html">Coffee Maker</a></h5>
-									<div class="simpleCart_shelfItem">
-										<p><span>$250</span> <i class="item_price">$220</i></p>
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" /> 
-											<input type="hidden" name="w3ls_item" value="Coffee Maker" /> 
-											<input type="hidden" name="amount" value="220.00" />   
-											<button type="submit" class="w3ls-cart">Add to cart</button>
-										</form>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-					</div>
-				</div> 
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //banner-bottom --> 
-	<!-- modal-video -->
-	<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/3.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>The Best Mobile Phone 3GB</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$380</span> <i class="item_price">$350</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="350.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/9.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Multimedia Home Accessories</h4>
-							<p>Ut enim ad minim veniam, quis nostrud 
-								exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia 
-								deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$180</span> <i class="item_price">$150</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Headphones"> 
-									<input type="hidden" name="amount" value="150.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/11.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Quad Core Colorful Laptop</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia  deserunt.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$880</span> <i class="item_price">$850</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Laptop"> 
-									<input type="hidden" name="amount" value="850.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/14.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Cool Single Door Refrigerator </h4>
-							<p>Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$950</span> <i class="item_price">$820</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="820.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/17.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>New Model Mixer Grinder</h4>
-							<p>Excepteur sint occaecat laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$460</span> <i class="item_price">$450</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Mobile Phone1"> 
-									<input type="hidden" name="amount" value="450.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModal5">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/36.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Dry Vacuum Cleaner</h4>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$960</span> <i class="item_price">$920</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Vacuum Cleaner"> 
-									<input type="hidden" name="amount" value="920.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<div class="modal video-modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModal6">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div>
-				<section>
-					<div class="modal-body">
-						<div class="col-md-5 modal_body_left">
-							<img src="images/37.jpg" alt=" " class="img-responsive" />
-						</div>
-						<div class="col-md-7 modal_body_right">
-							<h4>Kitchen & Dining Accessories</h4>
-							<p>Ut enim ad minim veniam, quis nostrud 
-								exercitation ullamco laboris nisi ut aliquip ex ea 
-								commodo consequat.Duis aute irure dolor in 
-								reprehenderit in voluptate velit esse cillum dolore 
-								eu fugiat nulla pariatur. Excepteur sint occaecat 
-								cupidatat non proident, sunt in culpa qui officia 
-								deserunt mollit anim id est laborum.</p>
-							<div class="rating">
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star-.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="rating-left">
-									<img src="images/star.png" alt=" " class="img-responsive" />
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="modal_body_right_cart simpleCart_shelfItem">
-								<p><span>$280</span> <i class="item_price">$250</i></p>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1"> 
-									<input type="hidden" name="w3ls_item" value="Induction Stove"> 
-									<input type="hidden" name="amount" value="250.00">   
-									<button type="submit" class="w3ls-cart">Add to cart</button>
-								</form>
-							</div>
-							<h5>Color</h5>
-							<div class="color-quality">
-								<ul>
-									<li><a href="#"><span></span></a></li>
-									<li><a href="#" class="brown"><span></span></a></li>
-									<li><a href="#" class="purple"><span></span></a></li>
-									<li><a href="#" class="gray"><span></span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
-	<!-- //modal-video -->
-	<!-- banner-bottom1 -->
-	<div class="banner-bottom1">
-		<div class="agileinfo_banner_bottom1_grids">
-			<div class="col-md-7 agileinfo_banner_bottom1_grid_left">
-				<h3>Grand Opening Event With flat<span>20% <i>Discount</i></span></h3>
-				<a href="products.html">Shop Now</a>
-			</div>
-			<div class="col-md-5 agileinfo_banner_bottom1_grid_right">
-				<h4>hot deal</h4>
-				<div class="timer_wrap">
-					<div id="counter"> </div>
-				</div>
-				<script src="js/jquery.countdown.js"></script>
-				<script src="js/script.js"></script>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //banner-bottom1 --> 
-	<!-- special-deals -->
-	<div class="special-deals">
-		<div class="container">
-			<h2>Special Deals</h2>
-			<div class="w3agile_special_deals_grids">
-				<div class="col-md-7 w3agile_special_deals_grid_left">
-					<div class="w3agile_special_deals_grid_left_grid">
-						<img src="images/21.jpg" alt=" " class="img-responsive" />
-						<div class="w3agile_special_deals_grid_left_grid_pos1">
-							<h5>30%<span>Off/-</span></h5>
-						</div>
-						<div class="w3agile_special_deals_grid_left_grid_pos">
-							<h4>We Offer <span>Best Products</span></h4>
-						</div>
-					</div>
-					<div class="wmuSlider example1">
-						<div class="wmuSliderWrapper">
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="images/t1.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Laura</h4>
-									</div>
-								</div>
-							</article>
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="images/t2.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Michael</h4>
-									</div>
-								</div>
-							</article>
-							<article style="position: absolute; width: 100%; opacity: 0;"> 
-								<div class="banner-wrap">
-									<div class="w3agile_special_deals_grid_left_grid1">
-										<img src="images/t3.png" alt=" " class="img-responsive" />
-										<p>Quis autem vel eum iure reprehenderit qui in ea voluptate 
-											velit esse quam nihil molestiae consequatur, vel illum qui dolorem 
-											eum fugiat quo voluptas nulla pariatur</p>
-										<h4>Rosy</h4>
-									</div>
-								</div>
-							</article>
-						</div>
-					</div>
-						<script src="js/jquery.wmuSlider.js"></script> 
-						<script>
-							$('.example1').wmuSlider();         
-						</script> 
-				</div>
-				<div class="col-md-5 w3agile_special_deals_grid_right">
-					<img src="images/20.jpg" alt=" " class="img-responsive" />
-					<div class="w3agile_special_deals_grid_right_pos">
-						<h4>Women's <span>Special</span></h4>
-						<h5>save up <span>to</span> 30%</h5>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //special-deals -->
-	<!-- new-products -->
-	<div class="new-products" >
-		<div class="container">
-	
-			<h3>New Products</h3>
-	<div class="col-md-10 col-md-offset-1">
-				<div class="alert alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
-					<div id="result"></div>
-				</div>
-				<center><img src="images/loader.gif" id="loader"></center>
-			</div>
+</head>
 
-			<div class="agileinfo_new_products_grids">
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.php">
+                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="has-sub">
+                            <a href="index.php">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                          
+                        </li>
+                        <li>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Charts</a>
+                        </li>
+                        <li>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Tables</a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="calendar.html">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
+                       
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Pages</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
+                                <li>
+                                    <a href="forget-pass.html">Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
 
-<?php
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a href="index.php">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            
+                        </li>
+                        <li>
+                          <a href="table.php">
+                            <i class="fas fa-table"></i>Gerer Clients</a>
+                        </li>                        
+<li >
+                            <a href="produit.php">
+                                <i class="fas fa-tachometer-alt"></i>Add Product</a>
+                            
+                        </li>
 
 
-include"../config.php";	
+ <li>
+                            <a href="listeprod.php">
+                                <i class="fas fa-chart-bar"></i>Liste produits</a>
+                        </li>
 
-require "../entities/produit.php";
-require "../core/produitC.php";
-		    	$objproduit = new produitC($conn);
-		    	$produits = $objproduit->getAllproduits();
 
-/////////////////////////
 
-///////////////////
-foreach ($produits as $key => $produit) {
-?>
-<?php  
+<li>
+                            <a href="categorie.php">
+                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
+                            
+                        </li>
 
-$promid=$produit['id'];
-$sql="SELECT * from promotion where idproduit =$promid ";
-$db = config::getConnexion();
-$idPromo=$db->query($sql);
-$prix = -1;
-foreach($idPromo as $nn){
- $prix = $nn['pourcentage'];
- $date_debut=$nn['datedebut'];
- $date_fin=$nn['datefin'];
-}
-?>				
-				<div class="col-md-3 agileinfo_new_products_grid">
-					<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-						<div class="hs-wrapper hs-wrapper1">
-							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<img src="../back-end/<?php echo $produit['image']; ?>" alt=" " class="img-responsive" />
-							<div class="w3_hs_bottom w3_hs_bottom_sub">
-								<ul>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
 
-						<h5><a href="single.html"><?php echo $produit['nom'];  ?> </a></h5>
-											
-						<div class="simpleCart_shelfItem">
-<?php if($prix!=-1)  {?> 
- <p><span><?php echo number_format($produit['prix'],2)  ?> TND</span> <i class="item_price">
- 	<?php echo number_format($produit['prix']-($produit['prix']*($prix/100)),2);  ?>  TND</i></p>
- <?php } else { ?>
- <p><i class="item_price"> <?php echo number_format($produit['prix'],2)  ?> TND</i></p>
-<?php } ?> 	
-                        <?php  if(isset($_SESSION['id'])){
-		        				$disButton = "";
-		        				if( array_search($produit['id'], array_column($cartItems, 'pid')) !==false ) {
-		        					$disButton = "disabled";
-		        				}
-		        			 ?>
-<button id="cartBtn_<?=$produit['id'];?>"  <?php echo $disButton; ?>  role="button" class="w3ls-cart" 
-	onclick="addToCart(<?php echo $produit['id']; ?>,this.id)" >Add to cart</button>
-<?php } ?>
-<?php if(!isset($_SESSION['id'])){ ?>
-<button   role="button" class="w3ls-cart" 
-	onclick=myfunction();>Add to cart</button>
-<script>
-function myfunction() {
-  alert("you must log in to put in cart ");
-  $('#myModal88').modal('show');
 
-}
-</script>	
-<?php } ?>	
+                        <li>
 
-						</div>
-					
-					</div>
-					
-				</div>
-				
-				<?php  } ?>	
+                        <a href="categorie.html">
+                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
+                        </li>
+                         <li>
+                            <a href="panier_commande.php">
+                                <i class="fas fa-table"></i>panier_commande</a>
+                        </li>
+                         <li>
+<a href="promotion.php">
+<i class="far fa-check-square"></i>Promotion</a>
+</li>
+<li>
+<a href="fidelite.php">
+<i class="fas fa-calendar-alt"></i>Fidelite</a>
+</li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="calendar.html">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
+                        <li>
+                            <a href="map.html">
+                                <i class="fas fa-map-marker-alt"></i>Mailbox</a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Pages</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
+                                <li>
+                                    <a href="forget-pass.html">Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                    
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
 
-				
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //new-products -->
-	<!-- top-brands -->
-	<div class="top-brands">
-		<div class="container">
-			<h3>Top Brands</h3>
-			<div class="sliderfig">
-				<ul id="flexiselDemo1">			
-					<li>
-						<img src="images/tb1.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="images/tb2.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="images/tb3.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="images/tb4.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="images/tb5.jpg" alt=" " class="img-responsive" />
-					</li>
-				</ul>
-			</div>
-			<script type="text/javascript">
-					$(window).load(function() {
-						$("#flexiselDemo1").flexisel({
-							visibleItems: 4,
-							animationSpeed: 1000,
-							autoPlay: true,
-							autoPlaySpeed: 3000,    		
-							pauseOnHover: true,
-							enableResponsiveBreakpoints: true,
-							responsiveBreakpoints: { 
-								portrait: { 
-									changePoint:480,
-									visibleItems: 1
-								}, 
-								landscape: { 
-									changePoint:640,
-									visibleItems:2
-								},
-								tablet: { 
-									changePoint:768,
-									visibleItems: 3
-								}
-							}
-						});
-						
-					});
-			</script>
-			<script type="text/javascript" src="js/jquery.flexisel.js"></script>
-		</div>
-	</div>
-	<!-- //top-brands --> 
-	<!-- newsletter -->
-	<div class="newsletter">
-		<div class="container">
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3>Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //newsletter -->
-	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="w3_footer_grids">
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Contact</h3>
-					<p>you can reach us through this also .</p>
-					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>23 Avenue habib chaker, <span>Mourouj 3.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">High-Tech-Info@gmail.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+216 54 567 567</li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Information</h3>
-					<ul class="info"> 
-						<li><a href="about.html">About Us</a></li>
-						<li><a href="mail.html">Contact Us</a></li>
-						<li><a href="codes.html">Short Codes</a></li>
-						<li><a href="faq.html">FAQ's</a></li>
-						<li><a href="products.html">Special Products</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Category</h3>
-					<ul class="info"> 
-						<li><a href="products.html">Mobiles</a></li>
-						<li><a href="products1.html">Laptops</a></li>
-						<li><a href="products.html">Purifiers</a></li>
-						<li><a href="products1.html">Wearables</a></li>
-						<li><a href="products2.html">Kitchen</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Profile</h3>
-					<ul class="info"> 
-						<li><a href="index.html">Home</a></li>
-						<li><a href="products.html">Today's Deals</a></li>
-					</ul>
-					<h4>Follow Us</h4>
-					<div class="agileits_social_button">
-						<ul>
-							<li><a href="#" class="facebook"> </a></li>
-							<li><a href="#" class="twitter"> </a></li>
-							<li><a href="#" class="google"> </a></li>
-							<li><a href="#" class="pinterest"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="footer-copy">
-			<div class="footer-copy1">
-				<div class="footer-copy-pos">
-					<a href="#home1" class="scroll"><img src="images/arrow.png" alt=" " class="img-responsive" /></a>
-				</div>
-			</div>
-			<div class="container">
-				<p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-			</div>
-		</div>
-	</div>
-	<!-- //footer --> 
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-comment-more"></i>
+                                        <span class="quantity">1</span>
+                                        <div class="mess-dropdown js-dropdown">
+                                            <div class="mess__title">
+                                                <p>You have 2 news message</p>
+                                            </div>
+                                            <div class="mess__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                </div>
+                                                <div class="content">
+                                                    <h6>mohamed jbali</h6>
+                                                    <p>Have sent a photo</p>
+                                                    <span class="time">3 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="mess__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                </div>
+                                                <div class="content">
+                                                    <h6>anwer mosbah</h6>
+                                                    <p>You are now connected on message</p>
+                                                    <span class="time">Yesterday</span>
+                                                </div>
+                                            </div>
+                                            <div class="mess__footer">
+                                                <a href="#">View all messages</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-email"></i>
+                                        <span class="quantity">1</span>
+                                        <div class="email-dropdown js-dropdown">
+                                            <div class="email__title">
+                                                <p>You have 3 New Emails</p>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p> reclamation number 111 </p>
+                                                    <span>mourouj 1 , 3 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>reclamation number 127</p>
+                                                    <span>ariana , Yesterday</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>reclamation number 124</p>
+                                                    <span>el kram, April 12,,2018</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__footer">
+                                                <a href="#">See all emails</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-notifications"></i>
+                                        <span class="quantity">3</span>
+                                        <div class="notifi-dropdown js-dropdown">
+                                            <div class="notifi__title">
+                                                <p>You have 3 Notifications</p>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c1 img-cir img-40">
+                                                    <i class="zmdi zmdi-email-open"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a email notification</p>
+                                                    <span class="date">november 5, 2019 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c2 img-cir img-40">
+                                                    <i class="zmdi zmdi-account-box"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>client  account  has been blocked</p>
+                                                    <span class="date">november 4, 2019 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c3 img-cir img-40">
+                                                    <i class="zmdi zmdi-file-text"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a new file</p>
+                                                    <span class="date">november 6, 2019 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__footer">
+                                                <a href="#">All notifications</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                                    </h5>
+                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="../logout.php">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">overview</h2>
+                                    <button class="au-btn au-btn-icon au-btn--blue">
+                                        <i class="zmdi zmdi-plus"></i>add item</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>1368</h2>
+                                                <span>members online</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>688</h2>
+                                                <span>items solid</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>1,086</h2>
+                                                <span>this week</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-money"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>TND 5,386</h2>
+                                                <span>total earnings</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">recent reports</h3>
+                                        <div class="chart-info">
+                                            <div class="chart-info__left">
+                                                <div class="chart-note">
+                                                    <span class="dot dot--blue"></span>
+                                                    <span>products</span>
+                                                </div>
+                                                <div class="chart-note mr-0">
+                                                    <span class="dot dot--green"></span>
+                                                    <span>services</span>
+                                                </div>
+                                            </div>
+                                            <div class="chart-info__right">
+                                                <div class="chart-statis">
+                                                    <span class="index incre">
+                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
+                                                    <span class="label">products</span>
+                                                </div>
+                                                <div class="chart-statis mr-0">
+                                                    <span class="index decre">
+                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
+                                                    <span class="label">services</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-report__chart">
+                                            <canvas id="recent-rep-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card chart-percent-card">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 tm-b-5">char by %</h3>
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-6">
+                                                <div class="chart-note-wrap">
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--blue"></span>
+                                                        <span>products</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--red"></span>
+                                                        <span>services</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="percent-chart">
+                                                    <canvas id="percent-chart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2 class="title-1 m-b-25">Earnings By Items</h2>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>date</th>
+                                                <th>order ID</th>
+                                                <th>name</th>
+                                                <th class="text-right">price</th>
+                                                <th class="text-right">quantity</th>
+                                                <th class="text-right">total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2018-09-29 05:57</td>
+                                                <td>100398</td>
+                                                <td>iPhone X 64Gb Grey</td>
+                                                <td class="text-right">TND999.00</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">TND999.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-28 01:22</td>
+                                                <td>100397</td>
+                                                <td>Samsung S8 Black</td>
+                                                <td class="text-right">TND756.00</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">TND756.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-27 02:12</td>
+                                                <td>100396</td>
+                                                <td>Game Console Controller</td>
+                                                <td class="text-right">TND22.00</td>
+                                                <td class="text-right">2</td>
+                                                <td class="text-right">TND44.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-26 23:06</td>
+                                                <td>100395</td>
+                                                <td>iPhone X 256Gb Black</td>
+                                                <td class="text-right">TND1199.00</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">TND1199.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-25 19:03</td>
+                                                <td>100393</td>
+                                                <td>USB 3.0 Cable</td>
+                                                <td class="text-right">TND10.00</td>
+                                                <td class="text-right">3</td>
+                                                <td class="text-right">TND30.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-29 05:57</td>
+                                                <td>100392</td>
+                                                <td>Smartwatch 4.0 LTE Wifi</td>
+                                                <td class="text-right">TND199.00</td>
+                                                <td class="text-right">6</td>
+                                                <td class="text-right">TND1494.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-24 19:10</td>
+                                                <td>100391</td>
+                                                <td>Camera C430W 4k</td>
+                                                <td class="text-right">TND699.00</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">TND699.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2018-09-22 00:43</td>
+                                                <td>100393</td>
+                                                <td>USB 3.0 Cable</td>
+                                                <td class="text-right">TND10.00</td>
+                                                <td class="text-right">3</td>
+                                                <td class="text-right">TND30.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <h2 class="title-1 m-b-25">Top sales</h2>
+                                <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
+                                    <div class="au-card-inner">
+                                        <div class="table-responsive">
+                                            <table class="table table-top-countries">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>april 2018</td>
+                                                        <td class="text-right">tnd 3566.96</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>mars 2018 </td>
+                                                        <td class="text-right">TND2261.65</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>april 2017</td>
+                                                        <td class="text-right">TND1399.22</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>august 2017 </td>
+                                                        <td class="text-right">TND364.90</td>
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                                    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                        <div class="bg-overlay bg-overlay--blue"></div>
+                                        <h3>
+                                            <i class="zmdi zmdi-account-calendar"></i>26 April, 2018</h3>
+                                        <button class="au-btn-plus">
+                                            <i class="zmdi zmdi-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="au-task js-list-load">
+                                        <div class="au-task__title">
+                                            <p>Tasks for bahaeddine said</p>
+                                        </div>
+                                        <div class="au-task-list js-scrollbar3">
+                                            <div class="au-task__item au-task__item--danger">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#"> fixing bug when people add to cart </a>
+                                                    </h5>
+                                                    <span class="time">10:00 AM</span>
+                                                </div>
+                                            </div>
+                                            <div class="au-task__item au-task__item--warning">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#">checking client number 145 reclamation</a>
+                                                    </h5>
+                                                    <span class="time">11:00 AM</span>
+                                                </div>
+                                            </div>
+                                            <div class="au-task__item au-task__item--primary">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#">Meeting about plan for new admin dashboard </a>
+                                                    </h5>
+                                                    <span class="time">02:00 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="au-task__item au-task__item--success">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#">Create new task for Dashboard</a>
+                                                    </h5>
+                                                    <span class="time">03:30 PM</span>
+                                                </div>
+                                            </div>
+                                            <div class="au-task__item au-task__item--danger js-load-item">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#">Meeting about plan for Admin Template 2018</a>
+                                                    </h5>
+                                                    <span class="time">10:00 AM</span>
+                                                </div>
+                                            </div>
+                                            <div class="au-task__item au-task__item--warning js-load-item">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task">
+                                                        <a href="#">Create new task for Dashboard</a>
+                                                    </h5>
+                                                    <span class="time">11:00 AM</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="au-task__footer">
+                                            <button class="au-btn au-btn-load js-load-btn">load more</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                                    <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
+                                        <div class="bg-overlay bg-overlay--blue"></div>
+                                        <h3>
+                                            <i class="zmdi zmdi-comment-text"></i>New Messages</h3>
+                                        <button class="au-btn-plus">
+                                            <i class="zmdi zmdi-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="au-inbox-wrap js-inbox-wrap">
+                                        <div class="au-message js-list-load">
+                                            <div class="au-message__noti">
+                                                <p>You Have
+                                                    <span>2</span>
+
+                                                    new messages
+                                                </p>
+                                            </div>
+                                            <div class="au-message-list">
+                                                <div class="au-message__item unread">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name"> soumaya diab </h5>
+                                                                <p>Have sent a photo</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>12 Min ago</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="au-message__item unread">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap online">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-03.jpg" alt="Nicholas Martinez">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name">mostafa khiari</h5>
+                                                                <p>You are now connected on message</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>11:00 PM</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="au-message__item">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap online">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name">ahmed bacha</h5>
+                                                                <p> reclamation number  145</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>Yesterday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="au-message__item">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name">mohamed  messaoudi</h5>
+                                                                <p>  reclamation number 155</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>Sunday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="au-message__item js-load-item">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap online">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name">Michelle Sims</h5>
+                                                                <p>Lorem ipsum dolor sit amet</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>Yesterday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="au-message__item js-load-item">
+                                                    <div class="au-message__item-inner">
+                                                        <div class="au-message__item-text">
+                                                            <div class="avatar-wrap">
+                                                                <div class="avatar">
+                                                                    <img src="images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text">
+                                                                <h5 class="name">Michelle Sims</h5>
+                                                                <p>Purus feugiat finibus</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="au-message__item-time">
+                                                            <span>Sunday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="au-message__footer">
+                                                <button class="au-btn au-btn-load js-load-btn">load more</button>
+                                            </div>
+                                        </div>
+                                        <div class="au-chat">
+                                            <div class="au-chat__title">
+                                                <div class="au-chat-info">
+                                                    <div class="avatar-wrap online">
+                                                        <div class="avatar avatar--small">
+                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                        </div>
+                                                    </div>
+                                                    <span class="nick">
+                                                        <a href="#">John Smith</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="au-chat__content">
+                                                <div class="recei-mess-wrap">
+                                                    <span class="mess-time">12 Min ago</span>
+                                                    <div class="recei-mess__inner">
+                                                        <div class="avatar avatar--tiny">
+                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                        </div>
+                                                        <div class="recei-mess-list">
+                                                            <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
+                                                            <div class="recei-mess">Donec tempor, sapien ac viverra</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="send-mess-wrap">
+                                                    <span class="mess-time">30 Sec ago</span>
+                                                    <div class="send-mess__inner">
+                                                        <div class="send-mess-list">
+                                                            <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="au-chat-textfield">
+                                                <form class="au-form-icon">
+                                                    <input class="au-input au-input--full au-input--h65" type="text" placeholder="Type a message">
+                                                    <button class="au-input-icon">
+                                                        <i class="zmdi zmdi-camera"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2019 IDEART. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
 
 </body>
-<script type="text/javascript">
-	function addToCart(wId,btnId) {
-		
-		$('#loader').show();
-		$.ajax({
-			url: "action.php",
-			data: "wId=" + wId + "&action=add",
-			method: "post"
-		}).done(function(response) {
-           //alert('dsfdsfdsfdsf');
-			var data = JSON.parse(response);
-			//alert('raja3 donnee data cb');
-			$('#loader').hide();
-			$('.alert').show();
-			if(data.status == 0) {
-				$('.alert').addClass('alert-danger');
-				$('#result').html(data.msg);
-			} else {
-				$('.alert').addClass('alert-success');
-				$('#result').html(data.msg);
-				$('#'+btnId).prop('disabled',true);
-				$('#itemCount').text( parseInt( $('#itemCount').text() ) + 1);
-			}
-			
-		})
-	}
-
-</script>
 
 </html>
+<!-- end document-->

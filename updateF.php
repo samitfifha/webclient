@@ -1,4 +1,3 @@
-<?php  session_start();  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +10,12 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Add Product</title>
-    <link rel="icon" href="images/icone.ico">
-
+    <title>Promotion</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -33,28 +30,11 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-    <!-- FullCalendar -->
-    <link href='vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
-
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
-    <style type="text/css">
-    /* force class color to override the bootstrap base rule
-       NOTE: adding 'url: #' to calendar makes this unneeded
-     */
-    .fc-event, .fc-event:hover {
-          color: #fff !important;
-          text-decoration: none;
-    }
-    </style>
-
 </head>
 
-<!-- animsition overrides all click events on clickable things like a,
-      since calendar doesn't add href's be default,
-      it leads to odd behaviors like loading 'undefined'
-      moving the class to menus lead to only the menu having the effect -->
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -104,7 +84,7 @@
                         </li>
                         <li>
                             <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
+                                <i class="far fa-check-square"></i>Promotion</a>
                         </li>
                         <li>
                             <a href="calendar.html">
@@ -113,10 +93,6 @@
                         <li>
                             <a href="map.html">
                                 <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                         <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Mailbox</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -133,7 +109,45 @@
                                 </li>
                             </ul>
                         </li>
-                       
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="button.html">Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">Fontawesome Icon</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">Typography</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -144,76 +158,28 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    <img src="images/icon/logo.jpg" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a href="index.php">
+                            <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                            
                         </li>
-
-                        <li>
-                          <a href="table.php">
-                            <i class="fas fa-table"></i>Gerer Clients</a>
-                        </li> 
-
-
-  <li class="active has-sub">
-                            <a href="produit.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Product</a>
-                            
-                        </li>
-
-
- <li>
-                            <a href="listeprod.php">
-                                <i class="fas fa-chart-bar"></i>Liste produits</a>
-                        </li>
-
-
-
-<li>
-                            <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
-                        </li>
-
-
-
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
-                        </li>
- <li>
-                            <a href="panier_commande.php">
-                                <i class="fas fa-table"></i>panier_commande</a>
-                        </li>
-                         <li>
-<a href="promotion.php">
-<i class="far fa-check-square"></i>Promotion</a>
-</li>
-<li>
-<a href="fidelite.php">
-<i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>
-
-
                         <li>
                             <a href="chart.html">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
-                        <li >
+                        <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
+                                <i class="far fa-check-square"></i>Promotion</a>
                         </li>
                         <li>
                             <a href="calendar.html">
@@ -374,23 +340,23 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                            <a class="js-acc-btn" href="#">wale gazzehi</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
-                                                <div class="content">
+                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                                        <a href="#">wale gazzehi</a>
                                                     </h5>
-                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                    <span class="email">wale.gazehi@esprit.tn</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -408,7 +374,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="../logout.php">
+                                                <a href="#">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -419,92 +385,83 @@
                     </div>
                 </div>
             </header>
-            <!-- END HEADER DESKTOP-->
+            <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-          
+        
 
-            <div class="main-content">
-            
-                        
-                        
-                           
-                            
-<!--contenue-->
+<br><br><br><br><br><br>
 
 
+<?php
+require_once "fideliteF.php";
+$prom=new fideliteF();
+$list=$prom->recupererfidelite($_POST['ref']);
+foreach($list as $row)
+{
+?>
+<form action="UpdateFid.php" method="POST">
+    
 
+<table>
+    
 
-
-
-
-
-
-
-
-</head>
-
-<body>
-  
-        <div class="content-wrapper" >
-
-                <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
-                    <!-- BEGIN: Page heading-->
-                   <script type="text/javascript" src="controle.js"></script>
-   <form name="myform"  action="ajouter.php" onsubmit="return validate()"  method="POST" enctype="multipart/form-data"  >
-                    <div>
-                        
-                            <div class="card-body">
-                                <h5 class="box-title text-primary">AJOUTER UN PRODUIT</h5>
-                                <div class="row" style="margin-top:-2%;">
-                                    <div class="col-md-4" style="margin-top:30%;">
-                                                                      
-                                    </div>
-
-                                    
-
-                                                                    <div class="col-lg-5">
-                                    <div class="card-body">
-                                       
-                                       <div>
-                                        ID Produit:
-                                            <div class="md-form mb-4"><input  name="id" type="text"></div>
-
-                                        <div>
-                                        Nom Produit:
-                                            <div class="md-form mb-4"><input  name="nom" type="text"></div>
-                                        Prix Produit:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="prix" type="text"></div>
-                                        Quantité:
-                                            <div class="md-form mb-4"><input class="md-form-control" name="quantite" type="text"></div>
-                                        URL Image:
-                                            <div class="md-form mb-4"><input id="image"  name="image" type="file"></div>
-                                         ID Categorie:
-                                            <div class="md-form mb-4"><input id="id_cat"  name="id_cat" type="text"></div>
+<tr>
+     <td>  <label for="cc-payment" class="control-label mb-1">Client</label></td>
+    <td>
+       
+                                                <input  name="idc" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $row['id_client']; ?>" required>
+                                            </td>
 
 
 
-                            <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="upload" style="margin-left:-34%;"">Soumettre le produit</button><br><br>
-                                <button class="btn btn-light" type="submit" style="margin-left:-34%;">Annuler l'opération</button>
-                            </div>
-                                </div>
+</tr>
 
-                        </div>
-                    </div><!-- END: Page content-->
-                </div><!-- BEGIN: Footer-->
-            </div><!-- END: Content-->
-    </div><!-- BEGIN: Search form-->
-    <!-- CORE PLUGINS-->
-    <script src="../assets/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendors/metismenu/dist/metisMenu.min.js"></script>
-    <script src="../assets/vendors/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script><!-- PAGE LEVEL PLUGINS-->
-    <script src="../assets/vendors/dropzone/dist/min/dropzone.min.js"></script><!-- CORE SCRIPTS-->
-    <script src="../assets/js/app.min.js"></script><!-- PAGE LEVEL SCRIPTS-->
+<tr>
+     <td>  <label for="cc-payment" class="control-label mb-1">Debut de la promotion</label></td>
+    <td>
+       
+                                                <input  name="pts" type="number" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $row['point']; ?>" required>
+<input name="ref" type="hidden" value="<?php echo $row['ref']; }?>">
+                                            </td>
+
+
+
+</tr>
+
+<
+
+
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+
+<tr>
+
+<td>Ajouter la fidelite</td>
+
+<td> <button  type="submit" class="btn btn-lg btn-info btn-block" value="Ajouter" >Modifier</td>
+
+<tr>
+    
+</tr>
+
+
+
+
+
+
+</table>
+
+<br><br><br><br>
+
 
 </form>
-</body>
+
+
+
+    
 
 
 
@@ -518,22 +475,36 @@
 
 
 
-                              </div>
-                            </div><!-- .col -->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2019 IDEART. All rights reserved.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -553,19 +524,11 @@
     <script src="vendor/circle-progress/circle-progress.min.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
-
-  
+    <script src="vendor/select2/select2.min.js">
+    </script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-
-    <script type="text/javascript">
-
-
-
-    </script>
-
 
 </body>
 
