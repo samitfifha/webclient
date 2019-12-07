@@ -5,11 +5,15 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>High-Tech-Info<</title>
+<link rel="icon" href="images/icone.ico">
+
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -48,7 +52,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //end-smooth-scrolling --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
 </head> 
+<style type="text/css">
+	.alert, #loader {
+    	display: none;
+    }
+
+    .glyphicon, #itemCount {
+    	font-size: 18px;
+    }
+</style>
 <body> 
 	<!-- header modal -->
 	<div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
@@ -72,11 +86,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 										<div class="facts">
 											<div class="register">
-												<form action="#" method="post">			
-													<input name="Email" placeholder="Email Address" type="text" required="">						
-													<input name="Password" placeholder="Password" type="password" required="">										
+												<form action="clientlog.php" method="post">
+													<input name="username" id="username" placeholder="username" type="text" >
+													<input name="password" id="password" placeholder="password" type="password">
 													<div class="sign-up">
-														<input type="submit" value="Sign in"/>
+														<input type="submit" value="Sign in" onclick="return verif1()" />
 													</div>
 												</form>
 											</div>
@@ -85,13 +99,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
 										<div class="facts">
 											<div class="register">
-												<form action="#" method="post">			
-													<input placeholder="Name" name="Name" type="text" required="">
-													<input placeholder="Email Address" name="Email" type="email" required="">	
-													<input placeholder="Password" name="Password" type="password" required="">	
-													<input placeholder="Confirm Password" name="Password" type="password" required="">
+												<form name="myForm" id="myForm" action="ajoutclient.php" method="post">
+													<input placeholder="Nom" name="nom" id="nom" type="text" >
+													<input placeholder="Prenom" name="prenom" id="prenom" type="text" >
+													<input placeholder="Username" name="username" id="username" type="text" >
+													<input placeholder="adresse" name="adresse" id="adresse" type="text" >
+													<input placeholder="telephone" name="tel" id="tel" type="text" >
+													<input placeholder="Email Address" name="email" id="email" type="text" >
+													<input placeholder="Password" name="password" id="password" type="password" >
+													<input placeholder="Confirm Password" name="password" id="password1" type="password" >
 													<div class="sign-up">
-														<input type="submit" value="Create Account"/>
+														<input type="submit" onclick="return verif()" value="Create Account"/>
 													</div>
 												</form>
 											</div>
@@ -131,16 +149,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	</div> 
+  <?php if(!isset($_SESSION['id'])){ ?>
+  <script>
+    $('#myModal88').modal('show');
+  </script>
+  <?php } ?>
 	<!-- header modal -->
 	<!-- header -->
 	<div class="header" id="home1">
 		<div class="container">
 			<div class="w3l_login">
-				<a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+		  <?php if(!isset($_SESSION['id'])){ ?>
+        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+
+
+        <?php } else{
+if ($_SESSION['role']=='admin') {
+
+    ?>
+    <a href="../back-end/index.php"><span class="glyphicon glyphicon-stats" ></span></a>
+
+<?php } ?>
+    <a href="clientlog.php?action=out"><span class="glyphicon glyphicon-log-in" ></span></a>
+
+  <?php
+  }
+  ?>
 			</div>
 			<div class="w3l_logo">
-				<h1><a href="index.php">High-Tech-Info<span>Your stores. Your place.</span></a></h1>
-			</div>
+<h1><a href="index.php"><center><img src="images/hightech.png"></center><span>Your stores. Your place.</span></a></h1>			</div>
 			<div class="search">
 				<input class="search_box" type="checkbox" id="search_box">
 				<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
@@ -151,14 +188,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 				</div>
 			</div>
+
+<?php 
+require_once('../db/DbConnect.php');
+            $db   = new DbConnect();
+            $conn = $db->connect();
+
+            require '../entities/customer.php';
+            require '../core/customerC.php';
+	    	/*$objCustomer = new customerC($conn);
+	    	$objCustomer->setEmail($_SESSION['email']);
+	    	//$objCustomer->getCustomerById(1);
+	    	$customer = $objCustomer->getCustomerByEmailId();*/
+//session_start();
+
+	    	//$_SESSION['cid'] = $customer['id'];
+	    	//$_SESSION['cid'] = $_SESSION['id'];
+if(isset($_SESSION['id'])){          
+            echo ('session de client id ='.$_SESSION['id']);
+            require '../entities/cart.php';
+            require '../core/cartC.php';
+            $objCart = new cartC($conn);
+			$objCart->setCid($_SESSION['id']);
+			$cartItems = $objCart->getAllCartItems();
+		}
+  ?>			
 			<div class="cart cart box_1"> 
-				<form action="#" method="post" class="last"> 
-					<input type="hidden" name="cmd" value="_cart" />
-					<input type="hidden" name="display" value="1" />
-					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-				</form>   
+					<button class="w3view-cart" type="submit" name="submit" value="">
+<a href="checkout.php"style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php if(isset($_SESSION['id'])){ echo count($cartItems); } ?></sup></a>
+						 </button> 
 			</div>  
 		</div>
+
+
 	</div>
 	<!-- //header -->
 	<!-- navigation -->
@@ -227,6 +289,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</ul>
 						</li>  
 						<li><a href="mail.html">Mail Us</a></li>
+<?php if(isset($_SESSION['id'])){?>						
+						<li><a href="profile.php">Profile</a></li>						
+					    <li><a href="historique.php">historique achats</a></li>
+<?php } ?>
 					</ul>
 				</div>
 			</nav>
@@ -301,7 +367,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 
-<body>
 <?PHP
 include_once "../core/categoriec.php";
 $categorie1c=new categoriec();
@@ -330,7 +395,6 @@ foreach($listecategorie as $row1){
 
 }
 ?>
-</body>
 
 
 		
@@ -391,7 +455,6 @@ foreach($listecategorie as $row1){
                     <div>
 
 
-<body>
 <?PHP
 include "../core/produitcc.php";
 $produit1c=new produitc();
@@ -438,29 +501,38 @@ $produit1c=new produitc();
 
 
 
+
+
+********************************************************************************************************
+					<div class="w3ls_mobiles_grid_right_grid3">
+						
+
 <?php
 
 
 
 
 foreach($liste as $row){
-    ?>
+?>
+<?php  
 
+$promid=$row->id;
 
+$sql="SELECT * from promotion where idproduit =$promid ";
+$db = config::getConnexion();
+$idPromo=$db->query($sql);
+$prix = -1;
+foreach($idPromo as $nn){
+ $prix = $nn['pourcentage'];
+ $date_debut=$nn['datedebut'];
+ $date_fin=$nn['datefin'];
+}
 
-
-
-
-
-
-					<div class="w3ls_mobiles_grid_right_grid3">
+    ?>					
 						<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
-							<div class="agile_ecommerce_tab_left mobiles_grid">
+							<div  class="agile_ecommerce_tab_left mobiles_grid">
 								<div class="hs-wrapper hs-wrapper2">
-								 <img src="../back-end/<?php echo $row->image; ?>" width="200" height="300" > 
-                                
-
-
+									<img src="../back-end/<?php echo $row->image; ?>" width="200" height="300"/>
 									<div class="w3_hs_bottom w3_hs_bottom_sub1">
 										<ul>
 											<li>
@@ -469,32 +541,55 @@ foreach($liste as $row){
 										</ul>
 									</div>
 								</div>
-								<h5><a href="single.html">     <?PHP echo $row->nom; ?>             </a></h5> 
+								<h5><a href="single.html">     <?PHP echo $row->nom; ?>  </a></h5>
 								<div class="simpleCart_shelfItem">
-									<p><span>$250</span> <i class="item_price"> <?PHP echo $row->prix; ?>       </i></p>
-									<form action="#" method="post">
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" /> 
-										<input type="hidden" name="w3ls_item" value="Smart Phone" /> 
-										<input type="hidden" name="amount" value="245.00"/>   
-										<button type="submit" class="w3ls-cart">Add to cart</button>
-									<br>
-									<br>
+<?php if($prix!=-1)  {?> 
+ <p><span><?php echo number_format($row->prix,2)  ?> TND</span> <i class="item_price">
+ 	<?php echo number_format($row->prix-($row->prix*($prix/100)),2);  ?>  TND</i></p>
+ <?php } else { ?>
+ <p><i class="item_price"> <?php echo number_format($row->prix,2)  ?> TND</i></p>
+<?php } ?> 	
+                        <?php  if(isset($_SESSION['id'])){
+		        				$disButton = "";
+		        				if( array_search($row->id, array_column($cartItems, 'pid')) !==false ) {
+		        					$disButton = "disabled";
+		        				}
+		        			 ?>
+<button id="cartBtn_<?=$row->id;?>"  <?php echo $disButton; ?>  role="button" class="w3ls-cart" 
+	onclick="addToCart(<?php echo $row->id; ?>,this.id)" >Add to cart</button>
+<?php } ?>
+<?php if(!isset($_SESSION['id'])){ ?>
+<button   role="button" class="w3ls-cart" 
+	onclick=myfunction();>Add to cart</button>
+<script>
+function myfunction() {
+  alert("you must log in to put in cart ");
+  $('#myModal88').modal('show');
 
-
-
-									</form>
+}
+</script>	
+<?php } ?>	
 								</div> 
-                                </div>
-                                </div>
-                                <br>
- </div>
+							
+							</div>
 
-								    <?PHP
+
+						</div>
+																		    <?PHP
 
 }
 ?>
-								
+						
+
+					</div>
+***********************************************************************************************************
+
+                </div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div> 
+							
 
 	<!-- //Related Products -->
 	<!-- newsletter -->
@@ -503,30 +598,8 @@ foreach($liste as $row){
 	
 	
 	  <!-- footer -->
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+	<!-- footer -->
 	<div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -562,7 +635,7 @@ foreach($liste as $row){
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
-						<li><a href="index.php">Home</a></li>
+						<li><a href="index.html">Home</a></li>
 						<li><a href="products.html">Today's Deals</a></li>
 					</ul>
 					<h4>Follow Us</h4>
@@ -620,6 +693,32 @@ foreach($liste as $row){
 	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 	<!-- cart-js -->
 
-	<!-- //cart-js --> 
 </body>
+<script type="text/javascript">
+	function addToCart(wId,btnId) {
+		
+		$('#loader').show();
+		$.ajax({
+			url: "action.php",
+			data: "wId=" + wId + "&action=add",
+			method: "post"
+		}).done(function(response) {
+           //alert('dsfdsfdsfdsf');
+			var data = JSON.parse(response);
+			//alert('raja3 donnee data cb');
+			$('#loader').hide();
+			$('.alert').show();
+			if(data.status == 0) {
+				$('.alert').addClass('alert-danger');
+				$('#result').html(data.msg);
+			} else {
+				$('.alert').addClass('alert-success');
+				$('#result').html(data.msg);
+				$('#'+btnId).prop('disabled',true);
+				$('#itemCount').text( parseInt( $('#itemCount').text() ) + 1);
+			}
+			
+		})
+	}
+</script>
 </html>
