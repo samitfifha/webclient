@@ -1,5 +1,20 @@
 <?php session_start();
+if(empty($_SESSION['id']))
+{
+
+echo"<script type='text/javascript'>";
+echo"alert('Please LOGIN first');
+window.location.href='login.php' ;";
+echo "</script>";
+
+}
 ?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +25,9 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-      <link rel="icon" href="images/icone.ico">
-    <!-- Title Page-->
-    <title>Dashboard High-Tech-Info</title>
-    <link rel="icon" href="images/icone.ico">
 
+    <!-- Title Page-->
+    <title>Dashboard</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -36,7 +49,6 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -47,7 +59,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.php">
+                        <a class="logo" href="index.html">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -62,7 +74,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
-                            <a href="index.php">
+                            <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                           
                         </li>
@@ -88,7 +100,7 @@
                                 <i class="fas fa-copy"></i>Pages</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="login.php">Login</a>
                                 </li>
                                 <li>
                                     <a href="register.html">Register</a>
@@ -109,60 +121,34 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/icon/logo.jpg" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="index.php">
+                            <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             
                         </li>
-                        <li>
-                          <a href="table.php">
-                            <i class="fas fa-table"></i>Gerer Clients</a>
-                        </li>                        
-<li >
-                            <a href="produit.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Product</a>
+
+
+                                   <li class="active has-sub">
+                            <a href="produit.html">
+                                <i class="fas fa-tachometer-alt"></i>Produits</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
-                                <i class="fas fa-chart-bar"></i>Liste produits</a>
-                        </li>
-
-
-
-<li>
-                            <a href="categorie.php">
-                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
-                            
-                        </li>
-
-
-
                         <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
-                         <li>
-                            <a href="panier_commande.php">
-                                <i class="fas fa-table"></i>panier_commande</a>
+                        <li>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Tables</a>
                         </li>
-                         <li>
-<a href="promotion.php">
-<i class="far fa-check-square"></i>Promotion</a>
-</li>
-<li>
-<a href="fidelite.php">
-<i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>
                         <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
@@ -326,23 +312,23 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                            <a class="js-acc-btn" href="#">bahaeddine said</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                                        <a href="#">bahaeddine said</a>
                                                     </h5>
-                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                    <span class="email">bahaeddine.said@esprit.tn</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -360,8 +346,8 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="../logout.php">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a href="core/logout.php">
+                                                    <i class="zmdi zmdi-power" ></i>Logout</a>
                                             </div>
                                         </div>
                                     </div>

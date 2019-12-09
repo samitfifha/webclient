@@ -1,18 +1,20 @@
+<?php
+$bdd = new PDO('mysql:host=localhost;dbname=web', 'root', '');
 
 
 
+if(isset($_POST['pseudo']) AND isset($_POST['message']) AND !empty($_POST['pseudo']) AND !empty($_POST['message']) )
 
+{
+    $pseudo = htmlspecialchars($_POST['pseudo'] );
+    $message = htmlspecialchars($_POST['message'] );
+$date = date("d-m-Y");
+$heure = date("H:i");
+    $insertmsg = $bdd->prepare('INSERT INTO Forum(pseudo, message) VALUES(?, ?)');
+    $insertmsg->execute(array($pseudo, $message));
+}
 
-
-
-
-
-
-
-
-
-
-
+?>
 
 
 
@@ -175,18 +177,34 @@
 
 
 
-  <li class="active has-sub">
+  <li>
                             <a href="produit.html">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
-                                <i class="fas fa-chart-bar"></i>Liste produit</a>
+                        <li class="active has-sub">
+
+ <a href="listeprod.php">
+
+                                <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
+
+
+<li>
+                            <a href="categorie.html">
+                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
+                            
+                        </li>
+
+
+
+<li>
+                         <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Categorie</a>
+                        </li>
 
 
                         <li>
@@ -394,7 +412,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="core/logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -429,109 +447,89 @@
 
 
 </head>
-   <HTML>
-<body>
-<?PHP
-include "entites/categorie.php";
-include "core/categoriec.php";
-if (isset($_GET['id'])){
-	$categoriec=new categoriec();
-    $result=$categoriec->recuperercategorie($_GET['id']);
-	foreach($result as $row){
-		$id=$row['id'];
-		$nom=$row['nom'];
-		
-?>
-
-
-<body>
-   <form method="POST" >
-        <div class="content-wrapper" >
-
-                <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
-                    <!-- BEGIN: Page heading-->
-                 
-                    <div>
-                        
-                            <div class="card-body">
-                                <h5 class="box-title text-primary">MODIFIER CATEGORIE</h5>
-                                <div class="row" style="margin-top:-2%;">
-                                    <div class="col-md-4" style="margin-top:30%;">
-                                                                      
-                                    </div>
-                                                                    <div class="col-lg-5">
-                                    <div class="card-body">
-                                       
-                                       <div>
-                                        ID Produit:
-                                            <div class="md-form mb-4"><input  name="id" type="text" value="<?PHP echo $id ?>"    ></div>
-
-                                        <div>
-                                        Nom Produit:
-                                            <div class="md-form mb-4"><input  name="nom" type="text" value="<?PHP echo $nom ?>"  ></div>
-                                       
 
 
 
-                            <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="modifier" value="modifier" style="margin-left:-34%;"">Modifier</button>
-                               <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
-                            </div>
 
 
 
-</form>
+ <p class="promo" align="center" class="text-center text-info">Chat Room</p>
+
+
+
+
+
+                             <form method="post" action="">
+                                 <table align="center">
+                                      <tr>
+        <td height="46" width="35%">
+            <h4> PSEUDO</h4>
+        </td>
+        <td width="63%" height="46"><input type="text" name="pseudo" class="form-control" placeholder="PSEUDO" value="<?php if(isset($pseudo)) {echo $pseudo;}  ?>"></td>
+    </tr>
+
+
+                                     <tr>
+        <td width="35%">
+            <h4>MESSAGE</h4>
+        </td>
+        <td width="63%"><textarea  name="message" class="form-control"  placeholder="Message" ></textarea></td>
+    </tr>
+
+
+
+                                    <tr>
+                                        <td></td>
+        <td ><input type="submit" class="btn btn-primary btn-block" value="ENVOYER MESSAGE"></td>
+    </tr>
+
+
+
+
+                                 </table>
+
+
+
+                             </form>
+                             <br><br>
+
+                             <table align="center">
+
+<td>
+                             <?php 
+              
+                               $allmsg = $bdd->query('SELECT * FROM Form ORDER BY id DESC');
+
+                               while ($msg = $allmsg->fetch()) 
+                                {
+                                   
+                               
+                              ?>
+                              <b> <?php echo $msg['pseudo']; ?>:  </b><?php echo $msg['message']; ?> <br>
+                              <?php 
+                              }
+
+                               ?>
+                           </td>
+                           <td></td>
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
 </body>
-<?PHP
-	}
-}
-if (isset($_POST['modifier'])){
-	$categorie=new categorie($_POST['id'],$_POST['nom']);
-	$produitc->modifiercategorie($categorie,$_POST['id_ini']);
-  header('Location: listecat.php');
-}
 
 
-?>
-
-</body>
-</HTMl>
-
-
-
-
-                                </div>
-
-                        </div>
-                    </div><!-- END: Page content-->
-                </div><!-- BEGIN: Footer-->
-            </div><!-- END: Content-->
-    </div><!-- BEGIN: Search form-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
     <!-- CORE PLUGINS-->
     <script src="../assets/vendors/jquery/dist/jquery.min.js"></script>
     <script src="../assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -540,8 +538,13 @@ if (isset($_POST['modifier'])){
     <script src="../assets/vendors/dropzone/dist/min/dropzone.min.js"></script><!-- CORE SCRIPTS-->
     <script src="../assets/js/app.min.js"></script><!-- PAGE LEVEL SCRIPTS-->
 
-</form>
-</body>
+
+
+
+
+
+
+
 
 
 
@@ -608,3 +611,8 @@ if (isset($_POST['modifier'])){
 
 </html>
 <!-- end document-->
+
+
+
+
+

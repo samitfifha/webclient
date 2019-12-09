@@ -481,7 +481,7 @@ if (isset($_GET['id'])){
 
 
                             <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="modifier" value="modifier" style="margin-left:-34%;"">Modifier</button>
+                                <button class="btn btn-primary" type="submit" name="modifier" value="modifier" style="margin-left:-34%;">Modifier</button>
                                <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
                             </div>
 

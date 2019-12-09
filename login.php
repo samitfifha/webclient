@@ -1,3 +1,5 @@
+<?PHP session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,10 +49,10 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="" method="post">
+                            <form action="core/veriflogin.php" method="post" >
                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <label>LOGIN</label>
+                                    <input class="au-input au-input--full" type="text" name="login" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>

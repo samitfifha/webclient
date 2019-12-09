@@ -4,7 +4,7 @@ if(empty($_SESSION['id']))
 
 echo"<script type='text/javascript'>";
 echo"alert('Please LOGIN first');
-window.location.href='../index.php' ;";
+window.location.href='login.php' ;";
 echo "</script>";
 
 }
@@ -24,7 +24,6 @@ echo "</script>";
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <link rel="icon" href="images/icone.ico">
     <title>Add Product</title>
 
     <!-- Fontfaces CSS-->
@@ -59,6 +58,61 @@ echo "</script>";
           color: #fff !important;
           text-decoration: none;
     }
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 
 </head>
@@ -74,7 +128,7 @@ echo "</script>";
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.php">
+                        <a class="logo" href="index.html">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -93,7 +147,7 @@ echo "</script>";
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.php">Dashboard 1</a>
+                                    <a href="index.html">Dashboard 1</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">Dashboard 2</a>
@@ -156,60 +210,49 @@ echo "</script>";
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    <img src="images/icon/logo.jpg" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                    <li >
-                            <a href="index.php">
+                        <li class="has-sub">
+                            <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            
+                           
                         </li>
-                                                <li>
-                          <a href="table.php">
-                            <i class="fas fa-table"></i>Gerer Clients</a>
-                        </li> 
-<li >
-                            <a href="produit.php">
+
+
+
+
+  <li>
+                            <a href="produit.html">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li class="active has-sub">
-                            <a  href="listeprod.php">
+                        <li class="active has-sub">
+
+ <a href="listeprod.php">
+
                                 <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
 
 
 <li>
-                            <a href="categorie.php">
+                            <a href="categorie.html">
                                 <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
                             
                         </li>
 
 
 
-                        <li>
-
-                        <a href="categorie.html">
-                                <i class="fas fa-chart-bar"></i>Liste categorie</a>
-                        </li>
-                         <li>
-                            <a href="panier_commande.php">
-                                <i class="fas fa-table"></i>panier_commande</a>
-                        </li>
-                         <li>
-<a href="promotion.php">
-<i class="far fa-check-square"></i>Promotion</a>
-</li>
 <li>
-<a href="fidelite.php">
-<i class="fas fa-calendar-alt"></i>Fidelite</a>
-</li>
+                         <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Categorie</a>
+                        </li>
 
 
                         <li>
@@ -383,23 +426,23 @@ echo "</script>";
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                            <a class="js-acc-btn" href="#">bahaeddine said</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/<?php echo ($_SESSION['prenom']);?>.jpg" alt="John Doe" />
+                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
-                                                <div class="content">
+                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?php echo ($_SESSION['prenom']);?> <?php echo ($_SESSION['nom']);?></a>
+                                                        <a href="#">bahaeddine said</a>
                                                     </h5>
-                                                    <span class="email"><?php echo ($_SESSION['email']);?> </span>
+                                                    <span class="email">bahaeddine.said@esprit.tn</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -417,7 +460,7 @@ echo "</script>";
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="../logout.php">
+                                                <a href="core/logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -454,11 +497,10 @@ echo "</script>";
 </head>
 
 
+
+
 <body>
-
-
-
-
+<link rel="stylesheet" type="text/css" href="nt.css" />
 
 
 
@@ -467,12 +509,16 @@ echo "</script>";
 <?PHP
 include "core/produitc.php";
 $produit1c=new produitc();
-$listeproduits=$produit1c->afficherproduit();
+$listeproduits=$produit1c->afficherproduit(); 
 
-//var_dump($listeEmployes->fetchAll());
+
 ?>
 
-<table border="1">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+
+<table id="myTable"  border="1">
 <tr>
 <td>id</td>
 <td>nom</td>
@@ -497,7 +543,18 @@ foreach($listeproduits as $row){
     <td><?PHP echo $row['id_cat']; ?></td>
     <td>
 
-        <img src="<?php echo $row ['image']; ?>" width="300" height="180">
+
+
+
+<div class=zoom>
+ <div class=image>
+ <img src="../back-end/<?php echo $row["image"]; ?>" width="90" height="60" alt=Text de remplacement/>
+ </div>
+</div>
+
+
+
+
 
               
 
@@ -520,13 +577,54 @@ foreach($listeproduits as $row){
 }
 ?>
 </table>
+
+
+                                           <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+
+
+
+
+
 </body>
 </form>
 
 
+<br>
+
+<div class="imprimer" align="center">
+         <input id="impression" name="impression"  type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
+       </div>
+  
+        <script type="text/javascript">
+             function imprimer_page(){
+             window.print();
+              }
+         </script>
 
 
-
+<br>
+<br>
 
 </body>
 

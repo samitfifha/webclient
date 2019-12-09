@@ -1,19 +1,14 @@
+<?php session_start();
+if(empty($_SESSION['id']))
+{
 
+echo"<script type='text/javascript'>";
+echo"alert('Please LOGIN first');
+window.location.href='login.php' ;";
+echo "</script>";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+?>
 
 
 
@@ -63,6 +58,61 @@
           color: #fff !important;
           text-decoration: none;
     }
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 
 </head>
@@ -175,18 +225,34 @@
 
 
 
-  <li class="active has-sub">
+  <li>
                             <a href="produit.html">
                                 <i class="fas fa-tachometer-alt"></i>Add Product</a>
                             
                         </li>
 
 
- <li>
-                            <a href="listeprod.php">
-                                <i class="fas fa-chart-bar"></i>Liste produit</a>
+                        <li class="active has-sub">
+
+ <a href="listeprod.php">
+
+                                <i class="fas fa-chart-bar"></i>Liste produits</a>
                         </li>
 
+
+
+<li>
+                            <a href="categorie.html">
+                                <i class="fas fa-tachometer-alt"></i>Add Categorie</a>
+                            
+                        </li>
+
+
+
+<li>
+                         <a href="listecat.php">
+                                <i class="fas fa-chart-bar"></i>Liste Categorie</a>
+                        </li>
 
 
                         <li>
@@ -394,7 +460,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="core/logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -429,109 +495,137 @@
 
 
 </head>
-   <HTML>
+
+
+
+
+
+
+
 <body>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="tb.css" />
+
 <?PHP
-include "entites/categorie.php";
-include "core/categoriec.php";
-if (isset($_GET['id'])){
-	$categoriec=new categoriec();
-    $result=$categoriec->recuperercategorie($_GET['id']);
-	foreach($result as $row){
-		$id=$row['id'];
-		$nom=$row['nom'];
-		
+include "core/produitc.php";
+$produit1c=new produitc();
+$produit1c->afficherproduit(); 
+
+
+
+
+
+
 ?>
 
-
-<body>
-   <form method="POST" >
-        <div class="content-wrapper" >
-
-                <div class="page-content fade-in-up" style="background-color: #f2f3fa;">
-                    <!-- BEGIN: Page heading-->
-                 
-                    <div>
-                        
-                            <div class="card-body">
-                                <h5 class="box-title text-primary">MODIFIER CATEGORIE</h5>
-                                <div class="row" style="margin-top:-2%;">
-                                    <div class="col-md-4" style="margin-top:30%;">
-                                                                      
-                                    </div>
-                                                                    <div class="col-lg-5">
-                                    <div class="card-body">
-                                       
-                                       <div>
-                                        ID Produit:
-                                            <div class="md-form mb-4"><input  name="id" type="text" value="<?PHP echo $id ?>"    ></div>
-
-                                        <div>
-                                        Nom Produit:
-                                            <div class="md-form mb-4"><input  name="nom" type="text" value="<?PHP echo $nom ?>"  ></div>
-                                       
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 
 
-                            <div class="col-md-2" style="margin-top:50%;">
-                                <button class="btn btn-primary" type="submit" name="modifier" value="modifier" style="margin-left:-34%;"">Modifier</button>
-                               <input type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
-                            </div>
+<table id="myTable"  border="1">
+<tr>
+<td>id</td>
+<td>nom</td>
+<td>prix</td>
+<td>quantite</td>
+<td>ID_CAT</td>
+<td>IMAGE</td>
+<td>Supprimer</td>
+<td>Modifier</td>
+
+</tr>
+
+<?PHP
+foreach($listeproduits as $row){
+
+    ?>
+    <tr>
+    <td><?PHP echo $row->id; ?></td>  
+    <td><?PHP echo $row->nom; ?></td>
+    <td><?PHP echo $row->prix; ?></td>
+    <td><?PHP echo $row->quantite; ?></td>
+    <td><?PHP echo $row->id_cat; ?></td>
+    <td>
+
+        <img src="<?php echo $row->image; ?>" width="300" height="180">
+
+              
+
+         </td>
+    
 
 
 
+
+<td><form method="POST" action="supprimer.php">
+    <input type="submit" name="supprimer" value="supprimer">
+    <input type="hidden" value="<?PHP echo $row->id; ?>" name="id">
+    </form>
+    </td>
+    <td><a href="modifier.php?id=<?PHP echo $row->id; ?>">
+    <input type="submit" name="modifier" value="modifier"></a></td>
+    </tr>
+    <?PHP
+
+}
+?>
+</table>
+
+
+                                           <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+
+
+
+
+
+</body>
 </form>
+
+
+<br>
+
+<div class="imprimer" align="center">
+         <input id="impression" name="impression"  type="submit" onclick="imprimer_page()" value="Imprimer la Page" />
+       </div>
+  
+        <script type="text/javascript">
+             function imprimer_page(){
+             window.print();
+              }
+         </script>
+
+
+<br>
+<br>
+
 </body>
-<?PHP
-	}
-}
-if (isset($_POST['modifier'])){
-	$categorie=new categorie($_POST['id'],$_POST['nom']);
-	$produitc->modifiercategorie($categorie,$_POST['id_ini']);
-  header('Location: listecat.php');
-}
 
 
-?>
-
-</body>
-</HTMl>
-
-
-
-
-                                </div>
-
-                        </div>
-                    </div><!-- END: Page content-->
-                </div><!-- BEGIN: Footer-->
-            </div><!-- END: Content-->
-    </div><!-- BEGIN: Search form-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
     <!-- CORE PLUGINS-->
     <script src="../assets/vendors/jquery/dist/jquery.min.js"></script>
     <script src="../assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -540,8 +634,13 @@ if (isset($_POST['modifier'])){
     <script src="../assets/vendors/dropzone/dist/min/dropzone.min.js"></script><!-- CORE SCRIPTS-->
     <script src="../assets/js/app.min.js"></script><!-- PAGE LEVEL SCRIPTS-->
 
-</form>
-</body>
+
+
+
+
+
+
+
 
 
 
