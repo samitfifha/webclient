@@ -1,5 +1,5 @@
 <?PHP
-require_once "../back-end/configg.php";
+include "config.php";
 class categoriec {
 
 	function ajoutercat($categorie){
@@ -58,7 +58,7 @@ function supprimercategorie($id){
         }
 	}
 	function modifiercategorie($categorie,$id){
-		$sql="UPDATE produit SET id=:idd, nom=:nom WHERE id=:id";
+		$sql="UPDATE categorie SET id=:idd, nom=:nom WHERE id=:id";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
@@ -70,7 +70,6 @@ try{
 		$datas = array(':idd'=>$idd, ':id'=>$id, ':nom'=>$nom);
 		$req->bindValue(':idd',$idd);
 		$req->bindValue(':id',$id);
-		$req->bindValue(':nom',$nom);
 	
 		
 		
