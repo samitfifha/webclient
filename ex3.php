@@ -30,7 +30,7 @@ function affichez()
 $host='localhost';
 $user2='root';
 $pass='';
-$db='webb';
+$db='promotion';
 $occ=0;
 $co = new PDO("mysql:host=$host;dbname=$db", $user2, $pass);
 $sql = "SELECT * FROM promotion  ";
@@ -38,27 +38,12 @@ $list=$co->query($sql);
 return $list;
 
 }
- 
-    function getPromotion($id)
-    {
-        $host='localhost';
-        $user2='root';
-        $pass='';
-        $db='webb';
-        $occ=0;
-        $co = new PDO("mysql:host=$host;dbname=$db", $user2, $pass);
-        $sql = "SELECT * FROM promotion where idpromotion='".$id."'";
-        $list=$co->query($sql);
-        return $list;
-        
-    }
-    
 function Supprimez($idp)
 {
 $host='localhost';
 $user2='root';
 $pass='';
-$db='webb';
+$db='promotion';
 
 $co = new PDO("mysql:host=$host;dbname=$db", $user2, $pass);
 $sql = "DELETE FROM promotion  WHERE idpromotion = $idp";
@@ -73,7 +58,7 @@ function Modifier($idp,$idpr,$date1,$date2,$pourcentage)
 $host='localhost';
 $user2='root';
 $pass='';
-$db='webb';
+$db='mydb';
 
 $co = new PDO("mysql:host=$host;dbname=$db", $user2, $pass);
 $sql = "UPDATE promotion SET idproduit='$idpr' , datedebut='$date1' ,datefin='$date2' , pourcentage='$pourcentage' WHERE idpromotion='$idp'";
@@ -88,7 +73,7 @@ function ajouter($idp,$idpr,$date1,$date2,$pourcentage)
 $host='localhost';
 $user2='root';
 $pass='';
-$db='webb';
+$db='promotion';
 $co = new PDO("mysql:host=$host;dbname=$db", $user2, $pass);
 $holy=" INSERT INTO promotion (idpromotion,idproduit,datedebut,datefin,pourcentage) values ('$idp','$idpr','$date1','$date2','$pourcentage')";
 $query=$co->prepare($holy);

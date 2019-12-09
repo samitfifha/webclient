@@ -10,7 +10,7 @@ $pourcentage=$_POST['Pourcentage'];
 $date1=$_POST['date1'];
 $date2=$_POST['date2'];
 $lol->ajouter($idp,$idpr,$date1,$date2,$pourcentage);
-header("Location: promotion.php");
+//header("Location: affichezpromotion.php");
 
 
 

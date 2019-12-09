@@ -1,14 +1,17 @@
 <?PHP
-include "configg.php";
+include "config.php";
 
 class fideliteF {
 
 	
-function ajouterfidelite($ref,$id_client,$point){
+function ajouterfidelite($fidelite){
 		$sql="insert into fidelite (ref,id_client,point) values (:ref,:id_client, :point)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
+        $ref=$fidelite->getref();
+        $id_client=$fidelite->getid_client();
+        $point=$fidelite->getpoint(); 
         $req->bindValue(':ref',$ref);
 		$req->bindValue(':id_client',$id_client);
 		$req->bindValue(':point',$point);
@@ -47,16 +50,21 @@ function ajouterfidelite($ref,$id_client,$point){
             die('Erreur: '.$e->getMessage());
         }
 	}
-	function modifierFidelite($ref,$idc,$pts){
-		$sql="UPDATE fidelite SET id_client=:id_client, point=:point WHERE ref=:ref";
+	function modifierEmploye($fidelite,$ref){
+		$sql="UPDATE employe SET ref=:reff, id_client=:id_client, point=:point WHERE cin=:cin";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
+		$reff=$fidelite->getref();
+        $id_client=$fidelite->getid_client();
+        $point=$fidelite->getpoint();
+		$datas = array(':reff'=>$reff, ':ref'=>$ref, ':id_client'=>$id_client,':point'=>$point);
+		$req->bindValue(':reff',$reff);
 		$req->bindValue(':ref',$ref);
-		$req->bindValue(':id_client',$idc);
-		$req->bindValue(':point',$pts);
+		$req->bindValue(':id_client',$id_client);
+		$req->bindValue(':point',$point);
 		
             $s=$req->execute();
 			
